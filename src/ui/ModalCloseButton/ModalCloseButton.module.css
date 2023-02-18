@@ -1,0 +1,16 @@
+.modalCloseButton {
+	transition: var(--transition);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	outline: 1px solid var(--darkgray);
+	border-radius: 50%;
+	height: 80%;
+	background-color: transparent;
+	aspect-ratio: 1 / 1;
+}
+
+.modalCloseButton:hover {
+	background-color: var(--darkgray);
+}
