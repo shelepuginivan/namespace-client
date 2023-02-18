@@ -12,6 +12,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 
 	const doubleClickHandler = () => {
 		if (props.isDirectory) return setCWD(props.path)
+		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
 
 	const rightClickHandler = (e: Event) => {
