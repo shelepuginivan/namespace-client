@@ -29,8 +29,7 @@ const Preview = (): JSX.Element => {
 					<img src={getItemPreviewLink()} alt={getItemName()}/>
 				</Match>
 				<Match keyed={true} when={getFileType() === 'video'}>
-					<video controls={true}>
-						<source src={getItemPreviewLink()} type={`${getFileType()}/${getFileSubtype()}`}/>
+					<video src={getItemPreviewLink()} controls={true} preload="metadata">
 						Ваш браузер не поддерживает тег <kbd>&lt;video&gt;</kbd>
 					</video>
 				</Match>
