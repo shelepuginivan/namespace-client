@@ -1,12 +1,14 @@
-import {createSignal, JSX} from 'solid-js'
+import {JSX} from 'solid-js'
 import {io} from 'socket.io-client'
 import socketioClient from '../store/socketioClient'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
+import connectionURL from '../store/connectionURL'
+import styles from './Page.module.css'
 
 const AuthorizationPage = (): JSX.Element => {
-	const [getConnectionURL, setConnectionURL] = createSignal<string>('')
-	const [getSocketioClient, setSocketioClient] = socketioClient
-	const [getCWD, setCWD] = currentWorkingDirectory
+	const [getConnectionURL, setConnectionURL] = connectionURL
+	const setSocketioClient = socketioClient[1]
+	const setCWD = currentWorkingDirectory[1]
 
 	const connectToSocketServer = () => {
 		try {
@@ -20,7 +22,7 @@ const AuthorizationPage = (): JSX.Element => {
 	}
 
 	return (
-		<div>
+		<div class={styles.page}>
 			<input
 				type="text"
 				value={getConnectionURL()}
