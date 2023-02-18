@@ -9,11 +9,15 @@ const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
 	const [getItemName, setItemName] = createSignal<string>('')
 	const [getItemPath, setItemPath] = createSignal<string>('')
+	const [getItemMimetype, setItemMimetype] = createSignal<string>('')
+	const [getItemSize, setItemSize] = createSignal<number>(0)
 
 	createEffect(() => {
 		if (getFsItemOpenedInModal() instanceof FileSystemItem) {
 			setItemName(getFsItemOpenedInModal().name)
 			setItemPath(getFsItemOpenedInModal().path)
+			setItemMimetype(getFsItemOpenedInModal().mimetype)
+			setItemSize(getFsItemOpenedInModal().size)
 		}
 	})
 
@@ -31,6 +35,8 @@ const FileModal = (): JSX.Element => {
 				<div class={styles.preview}>
 					тут будет превью
 					и метаданные
+					<span>{getItemMimetype()}</span>
+					<span>Размер: {getItemSize()}</span>
 				</div>
 
 				<section class={styles.actions}>
