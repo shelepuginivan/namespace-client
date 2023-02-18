@@ -1,10 +1,10 @@
 import {JSX} from 'solid-js'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import styles from './FileIcon.module.css'
-import fileTypesIcons from '../../utils/fileTypesIcons'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
+import FSItemParser from "../../utils/FSItemParser";
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	const setCWD = currentWorkingDirectory[1]
@@ -28,7 +28,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 			oncontextmenu={rightClickHandler}
 		>
 			<img
-				src={fileTypesIcons[props.isDirectory ? 'folder' : props.extension.replace('.', '')]}
+				src={FSItemParser.getExtensionIcon(props.extension || 'folder')}
 				alt={props.extension}
 			/>
 			<p>{props.name}</p>
