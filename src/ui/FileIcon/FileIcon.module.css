@@ -1,0 +1,13 @@
+.fileIcon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 200px;
+	height: 200px;
+}
+
+.fileIcon img {
+	width: 70%;
+	height: 70%;
+}
