@@ -20,12 +20,7 @@ const FileSystemPage = (): JSX.Element => {
 				<HeaderMenu/>
 				<FilesList>
 					{getItemsInCurrentWorkingDirectory().map(item => (
-						<FileIcon
-							path={item.path}
-							extension={item.extension}
-							isDirectory={item.isDirectory}
-							name={item.name}
-						/>
+						<FileIcon {...item} />
 					))}
 				</FilesList>
 			</div>
