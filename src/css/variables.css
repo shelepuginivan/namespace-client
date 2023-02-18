@@ -1,3 +1,6 @@
 :root {
-	--gray: #ccc
+	--gray: #ccc;
+	--lightgray: #dedede;
+	--darkgray: #808080;
+	--transition: .2s all ease-in-out;
 }
