@@ -2,5 +2,6 @@
 	--gray: #ccc;
 	--lightgray: #dedede;
 	--darkgray: #808080;
+	--transparent-black: rgba(0, 0, 0, .5);
 	--transition: .2s all ease-in-out;
 }
