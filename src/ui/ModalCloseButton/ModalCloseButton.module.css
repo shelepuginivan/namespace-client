@@ -9,6 +9,8 @@
 	height: 80%;
 	background-color: transparent;
 	aspect-ratio: 1 / 1;
+	min-width: 15px;
+	min-height: 15px;
 }
 
 .modalCloseButton:hover {
