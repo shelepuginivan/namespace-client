@@ -2,8 +2,9 @@ import {createEffect, createSignal, JSX} from 'solid-js'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FileModal.module.css'
-import ModalCloseButton from "../../ui/ModalCloseButton/ModalCloseButton";
-import {generateDownloadLink} from "../../utils/generateDownloadLink";
+import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
+import {generateDownloadLink} from '../../utils/generateDownloadLink'
+import FSItemParser from '../../utils/FSItemParser'
 
 const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
@@ -36,7 +37,7 @@ const FileModal = (): JSX.Element => {
 					тут будет превью
 					и метаданные
 					<span>{getItemMimetype()}</span>
-					<span>Размер: {getItemSize()}</span>
+					<span>Размер: {FSItemParser.getReadableSize(getItemSize())}</span>
 				</div>
 
 				<section class={styles.actions}>
