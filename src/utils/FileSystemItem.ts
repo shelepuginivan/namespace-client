@@ -5,12 +5,16 @@ class FileSystemItem implements IFileSystemItem {
 	isDirectory: boolean
 	name: string
 	path: string
+	mimetype: string
+	size: number
 
 	constructor (props: IFileSystemItem) {
 		this.extension = props.extension
 		this.isDirectory = props.isDirectory
 		this.name = props.name
 		this.path = props.path
+		this.mimetype = props.mimetype
+		this.size = props.size
 	}
 }
 
