@@ -5,6 +5,7 @@ import styles from './FileModal.module.css'
 import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
 import {generateDownloadLink} from '../../utils/generateDownloadLink'
 import FSItemParser from '../../utils/FSItemParser'
+import Preview from '../Preview/Preview'
 
 const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
@@ -34,8 +35,7 @@ const FileModal = (): JSX.Element => {
 			</header>
 			<main>
 				<div class={styles.preview}>
-					тут будет превью
-					и метаданные
+					<Preview/>
 					<span>{getItemMimetype()}</span>
 					<span>Размер: {FSItemParser.getReadableSize(getItemSize())}</span>
 				</div>
