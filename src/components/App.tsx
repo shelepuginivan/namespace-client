@@ -5,7 +5,7 @@ import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirect
 import AuthorizationPage from '../pages/AuthorizationPage'
 import FileSystemPage from '../pages/FileSystemPage'
 import {IFileSystemItem} from '../utils/interfaces/IFileSystemItem'
-import {Socket} from "socket.io-client";
+import {Socket} from 'socket.io-client'
 
 const App = (): JSX.Element => {
 	const [getSocketioClient, setSocketioClient] = socketioClient
