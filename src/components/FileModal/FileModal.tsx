@@ -12,14 +12,14 @@ const FileModal = (): JSX.Element => {
 	const [getItemName, setItemName] = createSignal<string>('')
 	const [getItemPath, setItemPath] = createSignal<string>('')
 	const [getItemMimetype, setItemMimetype] = createSignal<string>('')
-	const [getItemSize, setItemSize] = createSignal<number>(0)
+	const [getItemSize, setItemSize] = createSignal<string>('')
 
 	createEffect(() => {
 		if (getFsItemOpenedInModal() instanceof FileSystemItem) {
 			setItemName(getFsItemOpenedInModal().name)
 			setItemPath(getFsItemOpenedInModal().path)
 			setItemMimetype(getFsItemOpenedInModal().mimetype)
-			setItemSize(getFsItemOpenedInModal().size)
+			setItemSize(FSItemParser.getReadableSize(getFsItemOpenedInModal().size))
 		}
 	})
 
@@ -34,15 +34,17 @@ const FileModal = (): JSX.Element => {
 				<ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
 			</header>
 			<main>
-				<div class={styles.preview}>
-					<Preview/>
-					<span>{getItemMimetype()}</span>
-					<span>Размер: {FSItemParser.getReadableSize(getItemSize())}</span>
-				</div>
+				<Preview/>
 
 				<section class={styles.actions}>
-					<span>Name: {getItemName()}</span>
-					<span>Path: {getItemPath()}</span>
+					<table>
+						<caption>Информация</caption>
+						<tbody>
+							<tr> <td>Имя файла:</td> <td>{getItemName()}</td> </tr>
+							<tr> <td>Тип:</td> <td>{getItemMimetype()}</td> </tr>
+							<tr> <td>Размер</td> <td>{getItemSize()}</td> </tr>
+						</tbody>
+					</table>
 					<a href={generateDownloadLink(getItemPath())}>Скачать</a>
 				</section>
 			</main>
