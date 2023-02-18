@@ -3,6 +3,7 @@ import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FileModal.module.css'
 import ModalCloseButton from "../../ui/ModalCloseButton/ModalCloseButton";
+import {generateDownloadLink} from "../../utils/generateDownloadLink";
 
 const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
@@ -35,6 +36,7 @@ const FileModal = (): JSX.Element => {
 				<section class={styles.actions}>
 					<span>Name: {getItemName()}</span>
 					<span>Path: {getItemPath()}</span>
+					<a href={generateDownloadLink(getItemPath())}>Скачать</a>
 				</section>
 			</main>
 		</dialog>
