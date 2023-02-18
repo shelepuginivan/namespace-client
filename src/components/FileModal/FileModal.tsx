@@ -3,9 +3,10 @@ import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FileModal.module.css'
 import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
-import {generateDownloadLink} from '../../utils/generateDownloadLink'
+import {generateLink} from '../../utils/generateLink'
 import FSItemParser from '../../utils/FSItemParser'
 import Preview from '../Preview/Preview'
+import ky from 'ky'
 
 const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
@@ -27,6 +28,14 @@ const FileModal = (): JSX.Element => {
 		setFsItemOpenedInModal(null)
 	}
 
+	const deleteItem = async () => {
+		try {
+			await ky.delete(generateLink(getItemPath()))
+		} finally {
+			closeModal()
+		}
+	}
+
 	return (
 		<dialog class={styles.fileModal} open={Boolean(getFsItemOpenedInModal())}>
 			<header>
@@ -36,7 +45,7 @@ const FileModal = (): JSX.Element => {
 			<main>
 				<Preview/>
 
-				<section class={styles.actions}>
+				<section class={styles.menu}>
 					<table>
 						<caption>Информация</caption>
 						<tbody>
@@ -45,7 +54,11 @@ const FileModal = (): JSX.Element => {
 							<tr> <td>Размер</td> <td>{getItemSize()}</td> </tr>
 						</tbody>
 					</table>
-					<a href={generateDownloadLink(getItemPath())}>Скачать</a>
+
+					<div class={styles.actions}>
+						<a class={styles.action} href={generateLink(getItemPath())}><span class="icon-download"></span>Скачать</a>
+						<button class={styles.action} onclick={deleteItem}><span class="icon-delete"></span> Удалить</button>
+					</div>
 				</section>
 			</main>
 		</dialog>
