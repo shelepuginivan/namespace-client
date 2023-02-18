@@ -6,6 +6,7 @@ import FileIcon from '../components/FileIcon/FileIcon'
 import FilesList from '../ui/FilesList/FilesList'
 import styles from './Page.module.css'
 import HeaderBar from '../ui/HeaderBar/HeaderBar'
+import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
 
 const FileSystemPage = (): JSX.Element => {
 	const getItemsInCurrentWorkingDirectory = itemsInCurrentWorkingDirectory[0]
@@ -15,16 +16,19 @@ const FileSystemPage = (): JSX.Element => {
 	return (
 		<div class={styles.page}>
 			<HeaderBar cwd={getCWD()} host={getConnectionURL()}></HeaderBar>
-			<FilesList>
-				{getItemsInCurrentWorkingDirectory().map(item => (
-					<FileIcon
-						path={item.path}
-						extension={item.extension}
-						isDirectory={item.isDirectory}
-						name={item.name}
-					/>
-				))}
-			</FilesList>
+			<div>
+				<HeaderMenu/>
+				<FilesList>
+					{getItemsInCurrentWorkingDirectory().map(item => (
+						<FileIcon
+							path={item.path}
+							extension={item.extension}
+							isDirectory={item.isDirectory}
+							name={item.name}
+						/>
+					))}
+				</FilesList>
+			</div>
 		</div>
 	)
 }
