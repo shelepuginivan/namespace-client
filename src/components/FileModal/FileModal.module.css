@@ -1,0 +1,47 @@
+.fileModal[open] {
+	position: absolute;
+	left: 15%;
+	top: 15%;
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	height: 70%;
+	border: none;
+	outline: 1px solid var(--lightgray);
+}
+
+.fileModal[open]::backdrop {
+	filter: blur(10px);
+	background: var(--transparent-black);
+}
+
+.fileModal header {
+	display: flex;
+	height: fit-content;
+	background: var(--lightgray);
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 5px;
+}
+
+.fileModal main {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+}
+
+.preview {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 50%;
+}
+
+.actions {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 100%;
+}
