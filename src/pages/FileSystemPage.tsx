@@ -2,13 +2,12 @@ import ky from 'ky'
 import {JSX} from 'solid-js'
 
 import FileIcon from '../components/FileIcon/FileIcon'
-import FilesList from '../components/FilesList/FilesList'
+import FilesList from '../ui/FilesList/FilesList'
 import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
 import connectionURL from '../store/connectionURL'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
 import SocketioClient from '../store/socketioClient'
-import HeaderBar from '../ui/HeaderBar/HeaderBar'
 import styles from './Page.module.css'
 
 const FileSystemPage = (): JSX.Element => {
@@ -39,16 +38,15 @@ const FileSystemPage = (): JSX.Element => {
 
 	return (
 		<div class={styles.page}>
-			<HeaderBar cwd={getCWD()} host={getConnectionURL()}></HeaderBar>
-			<div>
+			<div
+				ondragenter={dragCommonHandler}
+				ondragover={dragCommonHandler}
+				ondragend={dragCommonHandler}
+				ondragleave={dragCommonHandler}
+				ondrop={dropHandler}
+			>
 				<HeaderMenu/>
-				<FilesList
-					ondragenter={dragCommonHandler}
-					ondragover={dragCommonHandler}
-					ondragend={dragCommonHandler}
-					ondragleave={dragCommonHandler}
-					ondrop={dropHandler}
-				>
+				<FilesList>
 					{getItemsInCurrentWorkingDirectory().map(item => (
 						<FileIcon {...item} />
 					))}
