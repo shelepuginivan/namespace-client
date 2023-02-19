@@ -9,8 +9,9 @@ import socketioClient from '../store/socketioClient'
 import FileModal from './FileModal/FileModal'
 
 const App = (): JSX.Element => {
+	const [getSocketioClient, setSocketioClient] = socketioClient
+
 	const getConnectionURL = connectionURL[0]
-	const getSocketioClient = socketioClient[0]
 	const getCWD = currentWorkingDirectory[0]
 
 	const setItemsInCurrentWorkingDirectory = itemsInCurrentWorkingDirectory[1]
@@ -24,6 +25,10 @@ const App = (): JSX.Element => {
 	})
 
 	createEffect(() => {
+		getSocketioClient()?.on('disconnect', () => {
+			setSocketioClient(null)
+		})
+
 		getSocketioClient()?.on('updateDirItems', directoryItemsString => {
 			setItemsInCurrentWorkingDirectory(JSON.parse(directoryItemsString))
 		})
