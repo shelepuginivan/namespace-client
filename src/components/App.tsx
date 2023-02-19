@@ -1,11 +1,13 @@
+import {Socket} from 'socket.io-client'
 import {createEffect, JSX, Show} from 'solid-js'
-import socketioClient from '../store/socketioClient'
-import currentWorkingDirectory from '../store/currentWorkingDirectory'
-import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
+
 import AuthorizationPage from '../pages/AuthorizationPage'
 import FileSystemPage from '../pages/FileSystemPage'
+import currentWorkingDirectory from '../store/currentWorkingDirectory'
+import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
+import socketioClient from '../store/socketioClient'
 import {IFileSystemItem} from '../utils/interfaces/IFileSystemItem'
-import {Socket} from 'socket.io-client'
+import FileModal from './FileModal/FileModal'
 
 const App = (): JSX.Element => {
 	const [getSocketioClient, setSocketioClient] = socketioClient
@@ -30,6 +32,7 @@ const App = (): JSX.Element => {
 	return (
 		<Show keyed when={getSocketioClient()} fallback={AuthorizationPage}>
 			<FileSystemPage/>
+			<FileModal/>
 		</Show>
 	)
 }

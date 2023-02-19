@@ -1,4 +1,3 @@
-import {IFSItemParser} from './interfaces/IFSItemParser'
 import bmp from '../assets/ext-icons/bmp.svg'
 import css from '../assets/ext-icons/css.svg'
 import dll from '../assets/ext-icons/dll.svg'
@@ -20,6 +19,7 @@ import svg from '../assets/ext-icons/svg.svg'
 import txt from '../assets/ext-icons/txt.svg'
 import xml from '../assets/ext-icons/xml.svg'
 import zip from '../assets/ext-icons/zip.svg'
+import {IFSItemParser} from './interfaces/IFSItemParser'
 
 class FSItemParser implements IFSItemParser {
 	private readonly extensionIcons = {

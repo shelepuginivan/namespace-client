@@ -1,7 +1,7 @@
 import {JSX} from 'solid-js'
+
+import {FilesListProps} from '../../utils/types/FilesListProps'
 import styles from './FilesList.module.css'
-import FileModal from '../FileModal/FileModal'
-import {FilesListProps} from "../../utils/types/FilesListProps";
 
 const FilesList = (props: FilesListProps): JSX.Element => {
 	return (
@@ -14,8 +14,6 @@ const FilesList = (props: FilesListProps): JSX.Element => {
 			ondragend={props.ondragend}
 		>
 			{props.children}
-
-			<FileModal/>
 		</div>
 	)
 }

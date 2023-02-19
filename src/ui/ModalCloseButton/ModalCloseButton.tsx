@@ -1,4 +1,5 @@
 import {JSX} from 'solid-js'
+
 import styles from './ModalCloseButton.module.css'
 
 const ModalCloseButton = (props: JSX.ButtonHTMLAttributes<any>): JSX.Element => {

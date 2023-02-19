@@ -1,10 +1,11 @@
 import {JSX} from 'solid-js'
+
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
-import styles from './FileIcon.module.css'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
+import FSItemParser from '../../utils/FSItemParser'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
-import FSItemParser from "../../utils/FSItemParser";
+import styles from './FileIcon.module.css'
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	const setCWD = currentWorkingDirectory[1]

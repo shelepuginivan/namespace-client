@@ -1,4 +1,5 @@
 import {JSX} from 'solid-js'
+
 import {HeaderBarProps} from '../../utils/types/HeaderBarProps'
 import styles from './HeaderBar.module.css'
 

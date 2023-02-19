@@ -1,8 +1,9 @@
-import {JSX} from 'solid-js'
 import {io} from 'socket.io-client'
-import socketioClient from '../store/socketioClient'
-import currentWorkingDirectory from '../store/currentWorkingDirectory'
+import {JSX} from 'solid-js'
+
 import connectionURL from '../store/connectionURL'
+import currentWorkingDirectory from '../store/currentWorkingDirectory'
+import socketioClient from '../store/socketioClient'
 import styles from './Page.module.css'
 
 const AuthorizationPage = (): JSX.Element => {

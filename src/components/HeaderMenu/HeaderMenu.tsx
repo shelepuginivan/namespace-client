@@ -1,4 +1,5 @@
 import {JSX} from 'solid-js'
+
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import HeaderMenuButton from '../../ui/HeaderMenuButton/HeaderMenuButton'
 import styles from './HeaderMenu.module.css'

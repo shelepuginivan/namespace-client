@@ -1,7 +1,8 @@
 import {createEffect, createSignal, JSX, Match, Switch} from 'solid-js'
+
+import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {generatePreviewLink} from '../../utils/generatePreviewLink'
-import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import styles from './Preview.module.css'
 
 const Preview = (): JSX.Element => {

@@ -1,14 +1,15 @@
+import ky from 'ky'
 import {JSX} from 'solid-js'
-import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
-import currentWorkingDirectory from '../store/currentWorkingDirectory'
-import connectionURL from '../store/connectionURL'
-import SocketioClient from '../store/socketioClient'
+
 import FileIcon from '../components/FileIcon/FileIcon'
 import FilesList from '../components/FilesList/FilesList'
-import styles from './Page.module.css'
-import HeaderBar from '../ui/HeaderBar/HeaderBar'
 import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
-import ky from 'ky'
+import connectionURL from '../store/connectionURL'
+import currentWorkingDirectory from '../store/currentWorkingDirectory'
+import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
+import SocketioClient from '../store/socketioClient'
+import HeaderBar from '../ui/HeaderBar/HeaderBar'
+import styles from './Page.module.css'
 
 const FileSystemPage = (): JSX.Element => {
 	const getSocketioClient = SocketioClient[0]

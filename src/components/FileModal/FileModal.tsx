@@ -1,12 +1,13 @@
 import {createEffect, createSignal, JSX} from 'solid-js'
+
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
-import FileSystemItem from '../../utils/FileSystemItem'
-import styles from './FileModal.module.css'
-import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
-import {generateLink} from '../../utils/generateLink'
-import FSItemParser from '../../utils/FSItemParser'
-import Preview from '../Preview/Preview'
 import socketioClient from '../../store/socketioClient'
+import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
+import FileSystemItem from '../../utils/FileSystemItem'
+import FSItemParser from '../../utils/FSItemParser'
+import {generateLink} from '../../utils/generateLink'
+import Preview from '../Preview/Preview'
+import styles from './FileModal.module.css'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
