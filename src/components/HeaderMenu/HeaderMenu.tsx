@@ -15,7 +15,7 @@ const HeaderMenu = (): JSX.Element => {
 
 	return (
 		<menu class={styles.menu}>
-			<HeaderMenuButton onclick={back}>..</HeaderMenuButton>
+			<HeaderMenuButton onclick={back}>&lt;</HeaderMenuButton>
 		</menu>
 	)
 }
