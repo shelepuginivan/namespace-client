@@ -4,6 +4,7 @@ import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {generatePreviewLink} from '../../utils/generatePreviewLink'
 import styles from './Preview.module.css'
+import FSItemParser from '../../utils/FSItemParser'
 
 const Preview = (): JSX.Element => {
 	const getFsItemOpenedInModal = fsItemOpenedInModal[0]
@@ -25,12 +26,12 @@ const Preview = (): JSX.Element => {
 
 	return (
 		<div class={styles.preview}>
-			<Switch fallback={<></>}>
+			<Switch fallback={<img src={FSItemParser.getItemIcon(getFsItemOpenedInModal())} alt="" />}>
 				<Match keyed={true} when={getFileType() === 'image'}>
-					<img src={getItemPreviewLink()} alt={getItemName()}/>
+					<img class={styles.previewContent} src={getItemPreviewLink()} alt={getItemName()}/>
 				</Match>
 				<Match keyed={true} when={getFileType() === 'video'}>
-					<video src={getItemPreviewLink()} controls={true} preload="metadata">
+					<video class={styles.previewContent} src={getItemPreviewLink()} controls={true} preload="metadata">
 						Ваш браузер не поддерживает тег <kbd>&lt;video&gt;</kbd>
 					</video>
 				</Match>
@@ -38,7 +39,7 @@ const Preview = (): JSX.Element => {
 					<audio src={getItemPreviewLink()} controls={true} preload="metadata"></audio>
 				</Match>
 				<Match keyed={true} when={['plain', 'html', 'pdf', 'xml'].includes(getFileSubtype())}>
-					<iframe src={getItemPreviewLink()}></iframe>
+					<iframe class={styles.previewContent} src={getItemPreviewLink()}></iframe>
 				</Match>
 			</Switch>
 		</div>
