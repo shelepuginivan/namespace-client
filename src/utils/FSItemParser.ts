@@ -12,6 +12,7 @@ import xml from '../assets/fileExtensionIcons/xml.svg'
 
 import archive from '../assets/fileTypeIcons/archive.svg'
 import audio from '../assets/fileTypeIcons/audio.svg'
+import defaultFile from '../assets/fileTypeIcons/defaultFile.svg'
 import folder from '../assets/fileTypeIcons/folder.svg'
 import image from '../assets/fileTypeIcons/image.svg'
 import video from '../assets/fileTypeIcons/video.svg'
@@ -51,7 +52,7 @@ class FSItemParser implements IFSItemParser {
 	}
 
 	getItemDescription(fileSystemItem: FileSystemItem) {
-		return this.fileTypeDescription[fileSystemItem.extension.replace('.', '')]
+		return fileSystemItem.mimetype || this.fileTypeDescription[fileSystemItem.extension.replace('.', '')]
 	}
 
 	getItemIcon(fileSystemItem: FileSystemItem): string {
@@ -66,7 +67,7 @@ class FSItemParser implements IFSItemParser {
 			}
 		}
 
-		return this.extensionIcons[fileSystemItem.extension.replace('.', '')]
+		return this.extensionIcons[fileSystemItem.extension.replace('.', '')] || defaultFile
 	}
 
 
