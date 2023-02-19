@@ -55,7 +55,8 @@ class FSItemParser implements IFSItemParser {
 		return fileSystemItem.mimetype || this.fileTypeDescription[fileSystemItem.extension.replace('.', '')]
 	}
 
-	getItemIcon(fileSystemItem: FileSystemItem): string {
+	getItemIcon(fileSystemItem?: FileSystemItem): string {
+		if (!fileSystemItem) return defaultFile
 		if (fileSystemItem.isDirectory) return folder
 
 		if (fileSystemItem.mimetype) {
