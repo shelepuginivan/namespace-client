@@ -6,7 +6,6 @@ import connectionURL from '../store/connectionURL'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
 import socketioClient from '../store/socketioClient'
-import {IFileSystemItem} from '../utils/interfaces/IFileSystemItem'
 import FileModal from './FileModal/FileModal'
 
 const App = (): JSX.Element => {
@@ -19,18 +18,18 @@ const App = (): JSX.Element => {
 	createEffect(() => getSocketioClient()?.emit('changeDir', getCWD()))
 
 	createEffect(() => {
-		document.querySelector('title').innerText = `nameSpace - ${getCWD()} [${getConnectionURL()}]`
+		document.querySelector('title').innerText = (getConnectionURL() && getCWD())
+			? `nameSpace - ${getCWD()} [${getConnectionURL()}]`
+			: 'nameSpace - Authorization'
 	})
 
 	createEffect(() => {
-		getSocketioClient()?.on('updateDirItems', dirItemsString => {
-			setItemsInCurrentWorkingDirectory(JSON.parse(dirItemsString) as IFileSystemItem[])
+		getSocketioClient()?.on('updateDirItems', directoryItemsString => {
+			setItemsInCurrentWorkingDirectory(JSON.parse(directoryItemsString))
 		})
 
 		getSocketioClient()?.on('contentChanged', directory => {
-			if (directory === getCWD()) {
-				getSocketioClient().emit('changeDir', getCWD())
-			}
+			if (directory === getCWD()) getSocketioClient().emit('changeDir', getCWD())
 		})
 	})
 
