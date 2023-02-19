@@ -30,7 +30,7 @@ const Preview = (): JSX.Element => {
 					<audio controls preload="metadata" src={generatePreviewLink(openedItem().path)}></audio>
 				</Match>
 				<Match keyed when={FSItemParser.canBeDisplayedInIframe(openedItem())}>
-					<iframe class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
+					<iframe height="100%" class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
 				</Match>
 			</Switch>
 		</div>
