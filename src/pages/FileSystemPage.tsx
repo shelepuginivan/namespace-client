@@ -2,7 +2,7 @@ import {JSX} from 'solid-js'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import connectionURL from '../store/connectionURL'
-import SocketioClient from "../store/socketioClient";
+import SocketioClient from '../store/socketioClient'
 import FileIcon from '../components/FileIcon/FileIcon'
 import FilesList from '../components/FilesList/FilesList'
 import styles from './Page.module.css'
@@ -21,24 +21,19 @@ const FileSystemPage = (): JSX.Element => {
 		e.stopPropagation()
 	}
 
-	const dropHandler = async (e: Event) => {
+	const dropHandler = (e: Event) => {
 		e.preventDefault()
 		e.stopPropagation()
 
 		const files: FileList = (e as DragEvent).dataTransfer.files
-		console.log(files)
 		const fileUploadBody = new FormData()
 
 		for (let i = 0; i < files.length; i++) {
 			fileUploadBody.append(`${getCWD()}/${files[i].name}`, files[i])
 		}
 
-		try {
-			await ky.post(`${getConnectionURL()}/files`, {body: fileUploadBody})
-			getSocketioClient().emit('updateFiles', getCWD())
-		} catch (e) {
-
-		}
+		ky.post(`${getConnectionURL()}/files`, {body: fileUploadBody})
+			.then(() => getSocketioClient().emit('updateItems', getCWD()))
 	}
 
 	return (
