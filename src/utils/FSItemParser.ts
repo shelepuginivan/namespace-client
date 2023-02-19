@@ -41,6 +41,7 @@ class FSItemParser implements IFSItemParser {
 		zip: archive,
 		'7z': archive
 	}
+
 	private readonly fileTypeDescription = {
 		py: 'Python File',
 		raw: 'Raw Image Format',
@@ -49,6 +50,15 @@ class FSItemParser implements IFSItemParser {
 		osr: 'osu! replay',
 		osu: 'osu! difficulty',
 		osz: 'osu! beatmap archive'
+	}
+
+	canBeDisplayedInIframe(fileSystemItem?: FileSystemItem): boolean {
+		if (!fileSystemItem) return false
+
+		const [type, subtype] = fileSystemItem.mimetype.split('/')
+		const visibleSubtypes = ['html', 'json', 'javascript', 'pdf', 'xml']
+
+		return type === 'text' || visibleSubtypes.includes(subtype)
 	}
 
 	getItemDescription(fileSystemItem: FileSystemItem) {
@@ -70,7 +80,6 @@ class FSItemParser implements IFSItemParser {
 
 		return this.extensionIcons[fileSystemItem.extension.replace('.', '')] || defaultFile
 	}
-
 
 	getReadableSize(fileSystemItem: FileSystemItem): string {
 		const units = ['Б', 'КБ', 'МБ', 'ГБ']
