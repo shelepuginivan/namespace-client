@@ -1,8 +1,11 @@
-<?xml version="1.0"?>
-<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <g class="layer">
-  <title>Layer 1</title>
-  <path d="m20,6.53l0,12.97c0,1.38 -1.12,2.5 -2.5,2.5l-11,0c-1.38,0 -2.5,-1.12 -2.5,-2.5l0,-15c0,-1.38 1.12,-2.5 2.5,-2.5l8.97,0c0.13,-0.01 0.27,0.04 0.38,0.15l4,4c0.11,0.11 0.16,0.25 0.15,0.38zm-5,-3.53l-8.5,0c-0.83,0 -1.5,0.67 -1.5,1.5l0,15c0,0.83 0.67,1.5 1.5,1.5l11,0c0.83,0 1.5,-0.67 1.5,-1.5l0,-12.5l-3.5,0c-0.28,0 -0.5,-0.22 -0.5,-0.5l0,-3.5zm1,0.71l0,2.29l2.29,0l-2.29,-2.29z" id="svg_1"/>
-  <text fill="#000000" font-family="Helvetica" font-size="8" id="svg_3" stroke="#000000" stroke-width="0" text-anchor="middle" x="11.93" xml:space="preserve" y="14.9">?</text>
- </g>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+	<title>defaultFile</title>
+	<defs>
+		<image  width="400" height="400" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQAQMAAAC6caSPAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAAqSURBVHic7cExAQAAAMKg9U/tbwagAAAAAAAAAAAAAAAAAAAAAAAAAIA3T7AAATkWl3gAAAAASUVORK5CYII="/>
+		<image width="408" height="408" id="img2" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGcgY2xhc3M9ImxheWVyIj4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBhdGggZD0ibTIwLDYuNTNsMCwxMi45N2MwLDEuMzggLTEuMTIsMi41IC0yLjUsMi41bC0xMSwwYy0xLjM4LDAgLTIuNSwtMS4xMiAtMi41LC0yLjVsMCwtMTVjMCwtMS4zOCAxLjEyLC0yLjUgMi41LC0yLjVsOC45NywwYzAuMTMsLTAuMDEgMC4yNywwLjA0IDAuMzgsMC4xNWw0LDRjMC4xMSwwLjExIDAuMTYsMC4yNSAwLjE1LDAuMzh6bS01LC0zLjUzbC04LjUsMGMtMC44MywwIC0xLjUsMC42NyAtMS41LDEuNWwwLDE1YzAsMC44MyAwLjY3LDEuNSAxLjUsMS41bDExLDBjMC44MywwIDEuNSwtMC42NyAxLjUsLTEuNWwwLC0xMi41bC0zLjUsMGMtMC4yOCwwIC0wLjUsLTAuMjIgLTAuNSwtMC41bDAsLTMuNXptMSwwLjcxbDAsMi4yOWwyLjI5LDBsLTIuMjksLTIuMjl6IiBpZD0ic3ZnXzEiLz4KICA8dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhIiBmb250LXNpemU9IjgiIGlkPSJzdmdfMyIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjExLjkzIiB4bWw6c3BhY2U9InByZXNlcnZlIiB5PSIxNC45Ij4/PC90ZXh0PgogPC9nPgo8L3N2Zz4="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<use id="defaultFile" href="#img2" transform="matrix(.98,0,0,.98,0,0)"/>
 </svg>
