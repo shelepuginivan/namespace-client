@@ -1,4 +1,7 @@
+import FileSystemItem from '../FileSystemItem'
+
 export interface IFSItemParser {
-	getExtensionIcon(path: string): string
-	getReadableSize(size: number): string
+	getItemDescription(fileSystemItem: FileSystemItem): string
+	getItemIcon(fileSystemItem: FileSystemItem): string
+	getReadableSize(fileSystemItem: FileSystemItem): string
 }
