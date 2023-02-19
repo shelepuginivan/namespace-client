@@ -57,7 +57,7 @@ const FileModal = (): JSX.Element => {
 					</table>
 
 					<div class={styles.actions}>
-						<a class={styles.action} href={generateLink(getItemPath())}><span class="icon-download"></span>Скачать</a>
+						<a target="_blank" class={styles.action} href={generateLink(getItemPath())}><span class="icon-download"></span>Скачать</a>
 						<button class={styles.action} onclick={deleteItem}><span class="icon-delete"></span> Удалить</button>
 					</div>
 				</section>
