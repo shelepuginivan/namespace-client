@@ -18,18 +18,18 @@ const Preview = (): JSX.Element => {
 						alt="Не удалось загрузить фотографию"
 					/>
 			}>
-				<Match keyed={true} when={openedItem()?.mimetype.startsWith('image')}>
+				<Match keyed when={openedItem()?.mimetype.startsWith('image')}>
 					<img class={styles.previewContent} src={generatePreviewLink(openedItem().path)} alt={openedItem().name}/>
 				</Match>
-				<Match keyed={true} when={openedItem()?.mimetype.startsWith('video')}>
-					<video class={styles.previewContent} src={generatePreviewLink(openedItem().path)} controls={true} preload="metadata">
+				<Match keyed when={openedItem()?.mimetype.startsWith('video')}>
+					<video controls preload="metadata" class={styles.previewContent} src={generatePreviewLink(openedItem().path)}>
 						Ваш браузер не поддерживает тег <kbd>&lt;video&gt;</kbd>
 					</video>
 				</Match>
-				<Match keyed={true} when={openedItem()?.mimetype.startsWith('audio')}>
-					<audio src={generatePreviewLink(openedItem().path)} controls={true} preload="metadata"></audio>
+				<Match keyed when={openedItem()?.mimetype.startsWith('audio')}>
+					<audio controls preload="metadata" src={generatePreviewLink(openedItem().path)}></audio>
 				</Match>
-				<Match keyed={true} when={['plain', 'html', 'pdf', 'xml'].includes(openedItem()?.mimetype.split('/').pop())}>
+				<Match keyed when={['plain', 'html', 'pdf', 'xml'].includes(openedItem()?.mimetype.split('/').pop())}>
 					<iframe class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
 				</Match>
 			</Switch>
