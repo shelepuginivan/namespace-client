@@ -14,8 +14,6 @@
 	border: none;
 }
 
-.preview img,
-.preview iframe,
-.preview video {
+.previewContent {
 	outline: 1px solid var(--darkgray);
 }
