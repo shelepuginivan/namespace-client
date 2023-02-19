@@ -22,7 +22,7 @@ const FileModal = (): JSX.Element => {
 			setItemName(getFsItemOpenedInModal().name)
 			setItemPath(getFsItemOpenedInModal().path)
 			setItemMimetype(getFsItemOpenedInModal().mimetype)
-			setItemSize(FSItemParser.getReadableSize(getFsItemOpenedInModal().size))
+			setItemSize(FSItemParser.getReadableSize(getFsItemOpenedInModal()))
 		}
 	})
 

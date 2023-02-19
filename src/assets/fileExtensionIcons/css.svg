@@ -1,0 +1,16 @@
+<svg fill="#ff0000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 53 53" xml:space="preserve" stroke="#ff0000">
+  <defs>
+    <style data-bx-fonts="JetBrains Mono">@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B1%2C100%3B1%2C200%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800&amp;display=swap);</style>
+  </defs>
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <g>
+      <g>
+        <path d="M45.707,10.074l-9.794-9.782C35.725,0.105,35.471,0,35.206,0H8C7.448,0,7,0.447,7,1v51c0,0.553,0.448,1,1,1h37 c0.552,0,1-0.447,1-1V10.782C46,10.517,45.895,10.263,45.707,10.074z M42.586,10H36V3.414L42.586,10z M9,51V2h25v9 c0,0.553,0.448,1,1,1h9v39H9z" style="stroke: rgb(0, 158, 231); fill: rgb(0, 158, 231);"></path>
+        <text style="fill: rgb(0, 158, 231); font-family: Arial, sans-serif; font-size: 5.3px; stroke: rgb(0, 158, 231); white-space: pre;" x="20.916" y="27.025"> </text>
+      </g>
+    </g>
+  </g>
+  <text style="fill: rgb(0, 158, 231); font-family: &quot;JetBrains Mono&quot;; font-size: 25px; stroke: rgb(0, 158, 231); white-space: pre;" x="19.034" y="35.555">#</text>
+</svg>
