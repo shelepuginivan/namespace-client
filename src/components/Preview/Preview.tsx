@@ -29,7 +29,7 @@ const Preview = (): JSX.Element => {
 				<Match keyed when={openedItem()?.mimetype.startsWith('audio')}>
 					<audio controls preload="metadata" src={generatePreviewLink(openedItem().path)}></audio>
 				</Match>
-				<Match keyed when={['plain', 'html', 'pdf', 'xml'].includes(openedItem()?.mimetype.split('/').pop())}>
+				<Match keyed when={FSItemParser.canBeDisplayedInIframe(openedItem())}>
 					<iframe class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
 				</Match>
 			</Switch>
