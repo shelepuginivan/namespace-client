@@ -1,66 +1,86 @@
-import bmp from '../assets/ext-icons/bmp.svg'
-import css from '../assets/ext-icons/css.svg'
-import dll from '../assets/ext-icons/dll.svg'
-import dmg from '../assets/ext-icons/dmg.svg'
-import folder from '../assets/ext-icons/folder.svg'
-import gif from '../assets/ext-icons/gif.svg'
-import html from '../assets/ext-icons/html.svg'
-import iso from '../assets/ext-icons/iso.svg'
-import jpg from '../assets/ext-icons/jpg.svg'
-import js from '../assets/ext-icons/js.svg'
-import mov from '../assets/ext-icons/mov.svg'
-import mp3 from '../assets/ext-icons/mp3.svg'
-import pdf from '../assets/ext-icons/pdf.svg'
-import png from '../assets/ext-icons/png.svg'
-import psd from '../assets/ext-icons/psd.svg'
-import raw from '../assets/ext-icons/raw.svg'
-import sql from '../assets/ext-icons/sql.svg'
-import svg from '../assets/ext-icons/svg.svg'
-import txt from '../assets/ext-icons/txt.svg'
-import xml from '../assets/ext-icons/xml.svg'
-import zip from '../assets/ext-icons/zip.svg'
+import css from '../assets/fileExtensionIcons/css.svg'
+import dll from '../assets/fileExtensionIcons/dll.svg'
+import dmg from '../assets/fileExtensionIcons/dmg.svg'
+import html from '../assets/fileExtensionIcons/html.svg'
+import iso from '../assets/fileExtensionIcons/iso.svg'
+import js from '../assets/fileExtensionIcons/js.svg'
+import pdf from '../assets/fileExtensionIcons/pdf.svg'
+import sql from '../assets/fileExtensionIcons/sql.svg'
+import txt from '../assets/fileExtensionIcons/txt.svg'
+import url from '../assets/fileExtensionIcons/url.svg'
+import xml from '../assets/fileExtensionIcons/xml.svg'
+
+import archive from '../assets/fileTypeIcons/archive.svg'
+import audio from '../assets/fileTypeIcons/audio.svg'
+import folder from '../assets/fileTypeIcons/folder.svg'
+import image from '../assets/fileTypeIcons/image.svg'
+import video from '../assets/fileTypeIcons/video.svg'
+
 import {IFSItemParser} from './interfaces/IFSItemParser'
+import FileSystemItem from './FileSystemItem'
 
 class FSItemParser implements IFSItemParser {
 	private readonly extensionIcons = {
-		bmp,
 		css,
 		dll,
 		dmg,
-		folder,
-		gif,
 		html,
 		iso,
-		jpg,
 		js,
-		mov,
-		mp3,
 		pdf,
-		png,
-		psd,
-		raw,
 		sql,
-		svg,
 		txt,
+		url,
 		xml,
-		zip
+		bz2: archive,
+		gz: archive,
+		raw: image,
+		rar: archive,
+		tar: archive,
+		zip: archive,
+		'7z': archive
 	}
-	getExtensionIcon(extension: string): string {
-		return this.extensionIcons[extension.replace('.', '')]
+	private readonly fileTypeDescription = {
+		py: 'Python File',
+		raw: 'Raw Image Format',
+		osb: 'osu! storyboard',
+		osk: 'osu! skin archive',
+		osr: 'osu! replay',
+		osu: 'osu! difficulty',
+		osz: 'osu! beatmap archive'
+	}
+
+	getItemDescription(fileSystemItem: FileSystemItem) {
+		return this.fileTypeDescription[fileSystemItem.extension.replace('.', '')]
+	}
+
+	getItemIcon(fileSystemItem: FileSystemItem): string {
+		if (fileSystemItem.isDirectory) return folder
+
+		if (fileSystemItem.mimetype) {
+			switch (fileSystemItem.mimetype.split('/')[0]) {
+				case 'audio': return audio
+				case 'image': return image
+				case 'video': return video
+				default:
+			}
+		}
+
+		return this.extensionIcons[fileSystemItem.extension.replace('.', '')]
 	}
 
 
-	getReadableSize(size: number): string {
+	getReadableSize(fileSystemItem: FileSystemItem): string {
 		const units = ['Б', 'КБ', 'МБ', 'ГБ']
 
 		for (let i = 0; i < units.length; i++) {
-			if (size < 1024 ** (i + 1)) {
-				const roundedSizeOfThisUnit = (size / (1024 ** i)).toFixed(2)
+			if (fileSystemItem.size < 1024 ** (i + 1)) {
+				const roundedSizeOfThisUnit = (fileSystemItem.size / (1024 ** i)).toFixed(2)
 				return `${roundedSizeOfThisUnit} ${units[i]}`
 			}
 		}
 
-		return `${size} Б`
+		return `${fileSystemItem.size} Б`
 	}
 }
 
