@@ -26,7 +26,14 @@ const Preview = (): JSX.Element => {
 
 	return (
 		<div class={styles.preview}>
-			<Switch fallback={<img src={FSItemParser.getItemIcon(getFsItemOpenedInModal())} alt="" />}>
+			<Switch
+				fallback={
+					<img
+						draggable={false}
+						src={FSItemParser.getItemIcon(getFsItemOpenedInModal())}
+						alt="Не удалось загрузить фотографию"
+					/>
+			}>
 				<Match keyed={true} when={getFileType() === 'image'}>
 					<img class={styles.previewContent} src={getItemPreviewLink()} alt={getItemName()}/>
 				</Match>

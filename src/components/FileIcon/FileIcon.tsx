@@ -29,6 +29,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 			oncontextmenu={rightClickHandler}
 		>
 			<img
+				draggable={false}
 				src={FSItemParser.getItemIcon(props)}
 				alt={props.extension}
 			/>
