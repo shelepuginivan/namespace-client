@@ -19,7 +19,11 @@ const App = (): JSX.Element => {
 				setItemsInCurrentWorkingDirectory(JSON.parse(dirItemsString) as IFileSystemItem[])
 			})
 
-			getSocketioClient().on('getCurrentDirectory', () => getSocketioClient().emit('returnCurrentDirectory', getCWD()))
+			getSocketioClient().on('contentChanged', directory => {
+				if (directory === getCWD()) {
+					getSocketioClient().emit('changeDir', getCWD())
+				}
+			})
 		}
 	})
 
