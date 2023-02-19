@@ -6,9 +6,10 @@ import ModalCloseButton from '../../ui/ModalCloseButton/ModalCloseButton'
 import {generateLink} from '../../utils/generateLink'
 import FSItemParser from '../../utils/FSItemParser'
 import Preview from '../Preview/Preview'
-import ky from 'ky'
+import socketioClient from '../../store/socketioClient'
 
 const FileModal = (): JSX.Element => {
+	const getSocketioClient = socketioClient[0]
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
 	const [getItemName, setItemName] = createSignal<string>('')
 	const [getItemPath, setItemPath] = createSignal<string>('')
@@ -30,7 +31,7 @@ const FileModal = (): JSX.Element => {
 
 	const deleteItem = async () => {
 		try {
-			await ky.delete(generateLink(getItemPath()))
+			getSocketioClient().emit('deleteItem', getItemPath())
 		} finally {
 			closeModal()
 		}
