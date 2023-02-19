@@ -27,10 +27,6 @@ const App = (): JSX.Element => {
 		getSocketioClient()?.on('updateDirItems', directoryItemsString => {
 			setItemsInCurrentWorkingDirectory(JSON.parse(directoryItemsString))
 		})
-
-		getSocketioClient()?.on('contentChanged', directory => {
-			if (directory === getCWD()) getSocketioClient().emit('changeDir', getCWD())
-		})
 	})
 
 	return (
