@@ -14,15 +14,18 @@ const FileModal = (): JSX.Element => {
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
 	const [getItemName, setItemName] = createSignal<string>('')
 	const [getItemPath, setItemPath] = createSignal<string>('')
-	const [getItemMimetype, setItemMimetype] = createSignal<string>('')
+	const [getItemDescription, setItemDescription] = createSignal<string>('')
 	const [getItemSize, setItemSize] = createSignal<string>('')
 
 	createEffect(() => {
-		if (getFsItemOpenedInModal() instanceof FileSystemItem) {
-			setItemName(getFsItemOpenedInModal().name)
-			setItemPath(getFsItemOpenedInModal().path)
-			setItemMimetype(getFsItemOpenedInModal().mimetype)
-			setItemSize(FSItemParser.getReadableSize(getFsItemOpenedInModal()))
+		const openedFile = getFsItemOpenedInModal()
+
+		if (openedFile instanceof FileSystemItem) {
+
+			setItemName(openedFile.name)
+			setItemPath(openedFile.path)
+			setItemDescription(FSItemParser.getItemDescription(openedFile))
+			setItemSize(FSItemParser.getReadableSize(openedFile))
 		}
 	})
 
@@ -30,7 +33,7 @@ const FileModal = (): JSX.Element => {
 		setFsItemOpenedInModal(null)
 	}
 
-	const deleteItem = async () => {
+	const deleteItem = () => {
 		try {
 			getSocketioClient().emit('deleteItem', getItemPath())
 		} finally {
@@ -52,7 +55,7 @@ const FileModal = (): JSX.Element => {
 						<caption>Информация</caption>
 						<tbody>
 							<tr> <td>Имя файла:</td> <td>{getItemName()}</td> </tr>
-							<tr> <td>Тип:</td> <td>{getItemMimetype()}</td> </tr>
+							<tr> <td>Тип:</td> <td>{getItemDescription()}</td> </tr>
 							<tr> <td>Размер</td> <td>{getItemSize()}</td> </tr>
 						</tbody>
 					</table>
