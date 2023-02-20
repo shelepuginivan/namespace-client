@@ -9,6 +9,14 @@
 	text-align: center;
 }
 
+.fileIcon * {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .fileIcon img {
 	width: 70%;
 	height: 70%;
