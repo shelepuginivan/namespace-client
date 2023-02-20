@@ -1,20 +1,24 @@
 import ky from 'ky'
-import {JSX} from 'solid-js'
+import {JSX, Show} from 'solid-js'
 
-import FileIcon from '../components/FileIcon/FileIcon'
-import FilesList from '../ui/FilesList/FilesList'
-import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
-import connectionURL from '../store/connectionURL'
-import currentWorkingDirectory from '../store/currentWorkingDirectory'
-import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
-import SocketioClient from '../store/socketioClient'
-import styles from './Page.module.css'
+import FileIcon from '../../components/FileIcon/FileIcon'
+import FilesList from '../../ui/FilesList/FilesList'
+import HeaderMenu from '../../components/HeaderMenu/HeaderMenu'
+import connectionURL from '../../store/connectionURL'
+import currentWorkingDirectory from '../../store/currentWorkingDirectory'
+import itemsInCurrentWorkingDirectory from '../../store/itemsInCurrentWorkingDirectory'
+import SocketioClient from '../../store/socketioClient'
+import showFileIcons from '../../store/showFileIcons'
+import page from '../Page.module.css'
+import styles from './FileSystemPage.module.css'
+import FileInline from '../../components/FileInline/FileInline'
 
 const FileSystemPage = (): JSX.Element => {
 	const getSocketioClient = SocketioClient[0]
 	const getItemsInCurrentWorkingDirectory = itemsInCurrentWorkingDirectory[0]
 	const getCWD = currentWorkingDirectory[0]
 	const getConnectionURL = connectionURL[0]
+	const getShowFileIcons = showFileIcons[0]
 
 	const dragCommonHandler = (e: Event) => {
 		e.preventDefault()
@@ -37,8 +41,9 @@ const FileSystemPage = (): JSX.Element => {
 	}
 
 	return (
-		<div class={styles.page}>
+		<div class={page.page}>
 			<div
+				class={styles.fileMenu}
 				ondragenter={dragCommonHandler}
 				ondragover={dragCommonHandler}
 				ondragend={dragCommonHandler}
@@ -48,7 +53,9 @@ const FileSystemPage = (): JSX.Element => {
 				<HeaderMenu/>
 				<FilesList>
 					{getItemsInCurrentWorkingDirectory().map(item => (
-						<FileIcon {...item} />
+						<Show keyed when={getShowFileIcons()} fallback={<FileInline {...item}/>}>
+							<FileIcon {...item}/>
+						</Show>
 					))}
 				</FilesList>
 			</div>
