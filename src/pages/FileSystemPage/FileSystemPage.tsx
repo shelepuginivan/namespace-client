@@ -32,6 +32,15 @@ const FileSystemPage = (): JSX.Element => {
 		const files: FileList = (e as DragEvent).dataTransfer.files
 		const fileUploadBody = new FormData()
 
+		const urlTransferCandidate = (e as DragEvent).dataTransfer.getData('URL')
+
+		if (urlTransferCandidate) {
+			const url = new URL(urlTransferCandidate)
+			const urlFile = new Blob([`[InternetShortcut]\r\nURL=${url}`])
+
+			fileUploadBody.append(`${url.hostname}${url.pathname}.url`.replace(/\//g, '-'), urlFile)
+		}
+
 		for (let i = 0; i < files.length; i++) {
 			fileUploadBody.append(`${getCWD()}/${files[i].name}`, files[i])
 		}
