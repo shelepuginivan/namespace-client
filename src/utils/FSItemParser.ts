@@ -1,13 +1,18 @@
+import apk from '../assets/fileExtensionIcons/apk.svg'
 import css from '../assets/fileExtensionIcons/css.svg'
 import dll from '../assets/fileExtensionIcons/dll.svg'
 import dmg from '../assets/fileExtensionIcons/dmg.svg'
 import html from '../assets/fileExtensionIcons/html.svg'
 import iso from '../assets/fileExtensionIcons/iso.svg'
 import js from '../assets/fileExtensionIcons/js.svg'
+import osu from '../assets/fileExtensionIcons/osu.svg'
 import pdf from '../assets/fileExtensionIcons/pdf.svg'
+import py from '../assets/fileExtensionIcons/py.svg'
+import rs from '../assets/fileExtensionIcons/rs.svg'
 import sql from '../assets/fileExtensionIcons/sql.svg'
 import txt from '../assets/fileExtensionIcons/txt.svg'
 import url from '../assets/fileExtensionIcons/url.svg'
+import vim from '../assets/fileExtensionIcons/vim.svg'
 import xml from '../assets/fileExtensionIcons/xml.svg'
 
 import archive from '../assets/fileTypeIcons/archive.svg'
@@ -22,6 +27,7 @@ import FileSystemItem from './FileSystemItem'
 
 class FSItemParser implements IFSItemParser {
 	private readonly extensionIcons = {
+		apk,
 		css,
 		dll,
 		dmg,
@@ -29,9 +35,12 @@ class FSItemParser implements IFSItemParser {
 		iso,
 		js,
 		pdf,
+		py,
 		sql,
+		rs,
 		txt,
 		url,
+		vim,
 		xml,
 		bz2: archive,
 		gz: archive,
@@ -39,12 +48,18 @@ class FSItemParser implements IFSItemParser {
 		rar: archive,
 		tar: archive,
 		zip: archive,
-		'7z': archive
+		'7z': archive,
+		osu,
+		osb: osu,
+		osk: osu,
+		osr: osu,
+		osz: osu
 	}
 
 	private readonly fileTypeDescription = {
 		py: 'Python File',
 		raw: 'Raw Image Format',
+		rs: 'Rust File',
 		osb: 'osu! storyboard',
 		osk: 'osu! skin archive',
 		osr: 'osu! replay',
@@ -62,7 +77,7 @@ class FSItemParser implements IFSItemParser {
 	}
 
 	getItemDescription(fileSystemItem: FileSystemItem) {
-		return fileSystemItem.mimetype || this.fileTypeDescription[fileSystemItem.extension.replace('.', '')]
+		return this.fileTypeDescription[fileSystemItem.extension.replace('.', '')] || fileSystemItem.mimetype
 	}
 
 	getItemIcon(fileSystemItem?: FileSystemItem): string {
