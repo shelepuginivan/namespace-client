@@ -38,7 +38,7 @@ const FileSystemPage = (): JSX.Element => {
 			const url = new URL(urlTransferCandidate)
 			const urlFile = new Blob([`[InternetShortcut]\r\nURL=${url}`])
 
-			fileUploadBody.append(`${url.hostname}${url.pathname}.url`.replace(/\//g, '-'), urlFile)
+			fileUploadBody.append(`${getCWD()}/${url.hostname}${url.pathname.replace(/\//g, '-')}.url`, urlFile)
 		}
 
 		for (let i = 0; i < files.length; i++) {
