@@ -1,7 +1,7 @@
 import {createEffect, JSX, Show} from 'solid-js'
 
-import AuthorizationPage from '../pages/AuthorizationPage'
-import FileSystemPage from '../pages/FileSystemPage'
+import AuthorizationPage from '../pages/AuthorizationPage/AuthorizationPage'
+import FileSystemPage from '../pages/FileSystemPage/FileSystemPage'
 import connectionURL from '../store/connectionURL'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
