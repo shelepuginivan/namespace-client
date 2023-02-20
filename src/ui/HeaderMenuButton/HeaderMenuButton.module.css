@@ -1,5 +1,6 @@
 .button {
 	transition: var(--transition);
+	aspect-ratio: 1 / 1;
 	height: 100%;
 	width: fit-content;
 	outline: 1px solid var(--gray);
