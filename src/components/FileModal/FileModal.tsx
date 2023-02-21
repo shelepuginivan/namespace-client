@@ -79,13 +79,13 @@ const FileModal = (): JSX.Element => {
 
 					<div class={styles.actions}>
 						<Show keyed when={!getInRenameMode()} fallback={
-							<div>
+							<div class={styles.renameMenu}>
 								<Input
 									onchange={e => setNewName((e.target as HTMLInputElement).value)} type="text"
 									value={getNewName()}
 								/>
-								<button onclick={() => setInRenameMode(false)}>Отмена</button>
-								<button onclick={renameItem}>Сохранить</button>
+								<button class={`${styles.button} ${styles.cancel}`} onClick={() => setInRenameMode(false)}>Отмена</button>
+								<button class={`${styles.button} ${styles.submit}`} onClick={renameItem}>Сохранить</button>
 							</div>
 						}>
 							<button class={styles.action} onClick={() => setInRenameMode(true)}>

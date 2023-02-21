@@ -65,17 +65,14 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 5px 15px 5px 15px;
-	height: 30px;
-	border-radius: 15px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 10px;
 	color: var(--darkgray);
 	outline: 1px solid var(--darkgray);
 	text-decoration: none;
+	font-size: 10pt;
 }
 
 button.action {
-	font-size: 1rem;
 	border: none;
 	background: transparent;
 	cursor: pointer;
@@ -85,4 +82,24 @@ button.action {
 	aspect-ratio: 1 / 1;
 	cursor: pointer;
 	margin-right: 8px;
+}
+
+.renameMenu {
+	display: flex;
+	flex-direction: column;
+}
+
+.renameMenu > * {
+	margin-top: 10px;
+}
+
+.renameMenu button {
+	width: 100%;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	outline: 1px solid var(--darkgray);
+	color: var(--darkgray);
+	padding: 5px;
+	cursor: pointer;
 }
