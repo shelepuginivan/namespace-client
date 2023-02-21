@@ -1,0 +1,7 @@
+.input {
+	border: none;
+	border-radius: 0;
+	padding: 5px;
+	outline: 1px solid var(--darkgray);
+	background-color: transparent;
+}
