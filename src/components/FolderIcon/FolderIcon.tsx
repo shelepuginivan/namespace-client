@@ -26,7 +26,7 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 
 		const fileDataText = e.dataTransfer.getData('text')
 		const fileData: IFileSystemItem = JSON.parse(fileDataText)
-		const newPath = `${props.name}/${fileData.name}`
+		const newPath = `${props.path}/${fileData.name}`
 
 		getSocketioClient().emit('renameItem', fileData.path, newPath)
 	}
