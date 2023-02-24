@@ -6,6 +6,7 @@ import showFileIcons from '../../store/showFileIcons'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FolderIcon.module.css'
 import FSItemParser from '../../utils/FSItemParser'
+import {preventEventDefault} from '../../utils/preventEventDefault'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const getShowFileIcons = showFileIcons[0]
@@ -15,11 +16,6 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const rightClickHandler = (e: Event) => {
 		e.preventDefault()
 		setFsItemOpenedInModal(new FileSystemItem(props))
-	}
-
-	const dragCommonHandler = (e: Event) => {
-		e.preventDefault()
-		e.stopPropagation()
 	}
 
 	const dropHandler = (e: Event) => {
@@ -33,9 +29,10 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 			data-displayicon={getShowFileIcons()}
 			ondblclick={() => setCWD(props.path)}
 			oncontextmenu={rightClickHandler}
-			ondragenter={dragCommonHandler}
-			ondragover={dragCommonHandler}
-			ondragleave={dragCommonHandler}
+			ondragenter={preventEventDefault}
+			ondragover={preventEventDefault}
+			ondragend={preventEventDefault}
+			ondragleave={preventEventDefault}
 			ondrop={dropHandler}
 		>
 			<img

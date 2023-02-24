@@ -11,17 +11,13 @@ import SocketioClient from '../../store/socketioClient'
 import page from '../Page.module.css'
 import styles from './FileSystemPage.module.css'
 import FolderIcon from '../../components/FolderIcon/FolderIcon'
+import {preventEventDefault} from '../../utils/preventEventDefault'
 
 const FileSystemPage = (): JSX.Element => {
 	const getSocketioClient = SocketioClient[0]
 	const getItemsInCurrentWorkingDirectory = itemsInCurrentWorkingDirectory[0]
 	const getCWD = currentWorkingDirectory[0]
 	const getConnectionURL = connectionURL[0]
-
-	const dragCommonHandler = (e: Event) => {
-		e.preventDefault()
-		e.stopPropagation()
-	}
 
 	const dropHandler = (e: Event) => {
 		e.preventDefault()
@@ -51,10 +47,10 @@ const FileSystemPage = (): JSX.Element => {
 		<div class={page.page}>
 			<div
 				class={styles.fileMenu}
-				ondragenter={dragCommonHandler}
-				ondragover={dragCommonHandler}
-				ondragend={dragCommonHandler}
-				ondragleave={dragCommonHandler}
+				ondragenter={preventEventDefault}
+				ondragover={preventEventDefault}
+				ondragend={preventEventDefault}
+				ondragleave={preventEventDefault}
 				ondrop={dropHandler}
 			>
 				<HeaderMenu/>
