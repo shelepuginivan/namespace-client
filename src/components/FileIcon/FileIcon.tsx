@@ -18,6 +18,13 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
 
+	const dragStartHandler = (e: DragEvent) => {
+		e.preventDefault()
+		e.stopPropagation()
+
+		e.dataTransfer.setData('text', JSON.stringify(props))
+	}
+
 	const rightClickHandler = (e: Event) => {
 		e.preventDefault()
 		setFsItemOpenedInModal(new FileSystemItem(props))
@@ -29,6 +36,8 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 			class={styles.fileIcon}
 			ondblclick={doubleClickHandler}
 			oncontextmenu={rightClickHandler}
+			draggable={true}
+			ondragstart={dragStartHandler}
 		>
 			<img
 				draggable={false}

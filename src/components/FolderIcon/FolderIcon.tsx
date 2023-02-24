@@ -18,9 +18,13 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
 
-	const dropHandler = (e: Event) => {
+	const dropHandler = (e: DragEvent) => {
 		e.preventDefault()
 		e.stopPropagation()
+
+		const fileDataText = e.dataTransfer.getData('text')
+		const fileData = JSON.parse(fileDataText)
+
 	}
 
 	return (
@@ -31,7 +35,6 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 			oncontextmenu={rightClickHandler}
 			ondragenter={preventEventDefault}
 			ondragover={preventEventDefault}
-			ondragend={preventEventDefault}
 			ondragleave={preventEventDefault}
 			ondrop={dropHandler}
 		>
