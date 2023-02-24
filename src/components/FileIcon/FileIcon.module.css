@@ -1,12 +1,6 @@
 .fileIcon {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 155px;
-	height: 155px;
 	cursor: pointer;
-	text-align: center;
 }
 
 .fileIcon * {
@@ -17,16 +11,43 @@
 	user-select: none;
 }
 
-.fileIcon img {
-	width: 70%;
-	height: 70%;
-}
-
 .fileIcon p {
 	width: 80%;
-	max-width: 80%;
 	max-height: 20px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.fileIcon[data-displayicon=true] {
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 155px;
+	height: 155px;
+	text-align: center;
+}
+
+
+.fileIcon[data-displayicon=false] {
+	padding: 5px 15px 5px 15px;
+	width: 100%;
+	max-height: 30px;
+	justify-content: left;
+	border-bottom: 1px solid var(--darkgray);
+}
+
+.fileIcon[data-displayicon=true] img {
+	width: 70%;
+	height: 70%;
+}
+
+.fileIcon[data-displayicon=false] img {
+	width: 20px;
+	height: 20px;
+	margin-right: 20px;
+}
+
+.fileIcon[data-displayicon=true] p {
+	max-height: 20px;
 }

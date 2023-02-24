@@ -2,12 +2,14 @@ import {JSX} from 'solid-js'
 
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
+import showFileIcons from '../../store/showFileIcons'
 import FileSystemItem from '../../utils/FileSystemItem'
 import FSItemParser from '../../utils/FSItemParser'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
 import styles from './FileIcon.module.css'
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
+	const getShowFileIcons = showFileIcons[0]
 	const setCWD = currentWorkingDirectory[1]
 	const setFsItemOpenedInModal = fsItemOpenedInModal[1]
 
@@ -21,9 +23,9 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
 
-
 	return (
 		<div
+			data-displayicon={getShowFileIcons()}
 			class={styles.fileIcon}
 			ondblclick={doubleClickHandler}
 			oncontextmenu={rightClickHandler}
