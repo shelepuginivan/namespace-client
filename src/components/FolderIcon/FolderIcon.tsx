@@ -3,12 +3,14 @@ import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import showFileIcons from '../../store/showFileIcons'
+import socketioClient from '../../store/socketioClient'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FolderIcon.module.css'
 import FSItemParser from '../../utils/FSItemParser'
 import {preventEventDefault} from '../../utils/preventEventDefault'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
+	const getSocketioClient = socketioClient[0]
 	const getShowFileIcons = showFileIcons[0]
 	const setCWD = currentWorkingDirectory[1]
 	const setFsItemOpenedInModal = fsItemOpenedInModal[1]
@@ -23,8 +25,10 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 		e.stopPropagation()
 
 		const fileDataText = e.dataTransfer.getData('text')
-		const fileData = JSON.parse(fileDataText)
+		const fileData: IFileSystemItem = JSON.parse(fileDataText)
+		const newPath = `${props.name}/${fileData.name}`
 
+		getSocketioClient().emit('renameItem', fileData.path, newPath)
 	}
 
 	return (

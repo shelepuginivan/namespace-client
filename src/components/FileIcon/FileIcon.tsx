@@ -19,9 +19,6 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	}
 
 	const dragStartHandler = (e: DragEvent) => {
-		e.preventDefault()
-		e.stopPropagation()
-
 		e.dataTransfer.setData('text', JSON.stringify(props))
 	}
 
