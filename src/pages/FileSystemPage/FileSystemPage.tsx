@@ -12,6 +12,7 @@ import page from '../Page.module.css'
 import styles from './FileSystemPage.module.css'
 import FolderIcon from '../../components/FolderIcon/FolderIcon'
 import {preventEventDefault} from '../../utils/preventEventDefault'
+import {backDirectory} from '../../utils/backDirectory'
 
 const FileSystemPage = (): JSX.Element => {
 	const getSocketioClient = SocketioClient[0]
@@ -55,6 +56,16 @@ const FileSystemPage = (): JSX.Element => {
 			>
 				<HeaderMenu/>
 				<FilesList>
+					{
+						getCWD() === '/' ? <></> : <FolderIcon
+							name=".."
+							extension=""
+							isDirectory={true}
+							mimetype="folder"
+							path={backDirectory(getCWD())}
+							size={0}
+						/>
+					}
 					{
 						getItemsInCurrentWorkingDirectory().map(item => (
 							item.isDirectory ? <FolderIcon {...item}/> : <FileIcon {...item}/>
