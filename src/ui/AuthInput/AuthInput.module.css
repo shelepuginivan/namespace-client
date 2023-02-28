@@ -1,0 +1,27 @@
+.inputWrapper {
+	display: flex;
+	border: 1px solid var(--lightgray);
+	align-items: center;
+	padding: 10px;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.inputWrapper label {
+	width: fit-content;
+	min-width: 30%;
+	height: 100%;
+	font-size: 14px;
+	margin-right: 20px;
+}
+
+.inputWrapper input {
+	border: none;
+	outline: none;
+	height: 100%;
+	flex-grow: 1;
+}
+
+.inputWrapper:focus-within {
+	border-color: var(--darkgray);
+}
