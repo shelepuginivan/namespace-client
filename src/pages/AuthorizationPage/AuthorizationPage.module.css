@@ -1,0 +1,36 @@
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(223,249,252);
+	background: linear-gradient(90deg, rgba(223,249,252,1) 0%, rgba(164,228,241,1) 100%);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	padding: 40px;
+	height: 70vh;
+	width: 50vw;
+	margin-inline: auto;
+	background-color: rgba(255, 255, 255, .5);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: fit-content;
+	width: 60%;
+}
+
+.inputs > * {
+	margin-block: 10px;
+	width: 100%;
+}
