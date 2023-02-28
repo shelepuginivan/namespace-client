@@ -15,7 +15,10 @@ const AuthorizationPage = (): JSX.Element => {
 	const setSocketioClient = socketioClient[1]
 	const setCWD = currentWorkingDirectory[1]
 
-	const connectToSocketServer = () => {
+	const connectToSocketServer = (e: Event) => {
+		e.preventDefault()
+		e.stopPropagation()
+
 		if (!getConnectionURL()) return
 
 		try {
