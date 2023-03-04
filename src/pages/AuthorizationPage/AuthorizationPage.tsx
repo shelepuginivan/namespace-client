@@ -56,10 +56,9 @@ const AuthorizationPage = (): JSX.Element => {
 						onchange={e => setPassword((e.target as HTMLInputElement).value)}
 					/>
 				</div>
-
 				<SubmitForm value="Войти" />
 			</form>
-		</div>
+		</main>
 	)
 }
 
