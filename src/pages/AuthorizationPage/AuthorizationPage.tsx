@@ -37,7 +37,7 @@ const AuthorizationPage = (): JSX.Element => {
 	}
 
 	return (
-		<div class={`${page.page} ${styles.wrapper}`}>
+		<main class={`${page.page} ${styles.wrapper}`}>
 			<form class={styles.form} onsubmit={connectToSocketServer}>
 				<h1>nameSpace</h1>
 				<div class={styles.inputs}>
