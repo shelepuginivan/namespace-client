@@ -28,8 +28,8 @@ const AuthorizationPage = (): JSX.Element => {
 				getConnectionURL(),
 				{auth: {password: getPassword()}}
 			)
-			setSocketioClient(socket)
-			socket.connect()
+
+			setSocketioClient(socket.connect())
 			setCWD('/')
 		} catch (e) {
 			console.log(e)
