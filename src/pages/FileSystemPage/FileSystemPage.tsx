@@ -36,9 +36,7 @@ const FileSystemPage = (): JSX.Element => {
 			fileUploadBody.append(`${getCWD()}/${url.hostname}${url.pathname.replace(/\//g, '-')}.url`, urlFile)
 		}
 
-		for (let i = 0; i < files.length; i++) {
-			fileUploadBody.append(`${getCWD()}/${files[i].name}`, files[i])
-		}
+		Array.from(files).forEach(file => fileUploadBody.append(`${getCWD()}/${file.name}`, file))
 
 		ky.post(`${getConnectionURL()}/files`, {body: fileUploadBody})
 			.then(() => getSocketioClient().emit('updateItems', getCWD()))
