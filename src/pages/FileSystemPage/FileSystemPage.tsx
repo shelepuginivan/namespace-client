@@ -71,7 +71,7 @@ const FileSystemPage = (): JSX.Element => {
 					}
 				</FilesList>
 			</div>
-		</div>
+		</main>
 	)
 }
 
