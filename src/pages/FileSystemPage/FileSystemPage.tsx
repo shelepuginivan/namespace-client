@@ -45,7 +45,7 @@ const FileSystemPage = (): JSX.Element => {
 	}
 
 	return (
-		<div class={page.page}>
+		<main class={page.page}>
 			<div
 				class={styles.fileMenu}
 				ondragenter={preventEventDefault}
