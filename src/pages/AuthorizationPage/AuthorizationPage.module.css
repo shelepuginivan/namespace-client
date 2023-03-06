@@ -34,3 +34,27 @@
 	margin-block: 10px;
 	width: 100%;
 }
+
+@media screen and (max-width: 860px) {
+	.form {
+		width: 70vw;
+		padding: 30px;
+	}
+}
+
+@media screen and (max-width: 630px) {
+	.inputs {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 470px) {
+	.form {
+		width: 90vw;
+		padding: 15px;
+	}
+
+	.inputs {
+		width: 100%;
+	}
+}
