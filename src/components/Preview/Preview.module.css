@@ -17,3 +17,17 @@
 .previewContent {
 	outline: 1px solid var(--darkgray);
 }
+
+@media screen and (max-width: 625px) {
+	.preview {
+		width: 100%;
+		max-width: 100%;
+		max-height: 70%;
+		height: max-content;
+		padding: 20px;
+	}
+
+	.previewContent {
+		flex-grow: 1;
+	}
+}
