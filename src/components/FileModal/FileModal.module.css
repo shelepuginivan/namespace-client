@@ -103,3 +103,41 @@ button.action {
 	padding: 5px;
 	cursor: pointer;
 }
+
+@media screen and (max-width: 725px) {
+	.actions {
+		padding-inline: 20px;
+	}
+}
+
+@media screen and (max-width: 625px) {
+	.fileModal > main {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.menu {
+		flex-direction: row;
+		width: 100%;
+		max-height: 35%;
+		padding-block: 0;
+	}
+
+	.menu > * {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 470px) {
+	.fileModal > main {
+		padding: 5px;
+	}
+
+	.actions {
+		padding-inline: 10px;
+	}
+
+	.menu table {
+		font-size: 14px;
+	}
+}
