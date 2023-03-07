@@ -22,7 +22,12 @@ const AuthorizationPage = (): JSX.Element => {
 		if (!getConnectionURL()) return
 
 		try {
-			setConnectionURL(url => url.startsWith('http') ? url : `http://${url}`)
+			setConnectionURL(url => {
+				if (!url.startsWith('http')) url = `http://${url}`
+				if (url.endsWith('/')) url = url.slice(0, url.length - 1)
+
+				return url
+			})
 
 			const socket = io(
 				getConnectionURL(),
