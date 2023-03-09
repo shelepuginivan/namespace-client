@@ -21,6 +21,8 @@ const FileModal = (): JSX.Element => {
 	const [getInRenameMode, setInRenameMode] = createSignal<boolean>(false)
 	const [getNewName, setNewName] = createSignal<string>('')
 
+	let renameInput: HTMLInputElement
+
 	createEffect(() => {
 		const openedFile = getFsItemOpenedInModal()
 
@@ -57,6 +59,11 @@ const FileModal = (): JSX.Element => {
 		}
 	}
 
+	const setRenameMode = () => {
+		setInRenameMode(true)
+		renameInput.select()
+	}
+
 	return (
 		<dialog class={styles.fileModal} open={Boolean(getFsItemOpenedInModal())}>
 			<header>
@@ -80,6 +87,7 @@ const FileModal = (): JSX.Element => {
 						<Show keyed when={!getInRenameMode()} fallback={
 							<div class={styles.renameMenu}>
 								<Input
+									ref={renameInput}
 									onchange={e => setNewName((e.target as HTMLInputElement).value)} type="text"
 									value={getNewName()}
 								/>
@@ -87,7 +95,7 @@ const FileModal = (): JSX.Element => {
 								<button class={`${styles.button} ${styles.submit}`} onClick={renameItem}>Сохранить</button>
 							</div>
 						}>
-							<button class={styles.action} onClick={() => setInRenameMode(true)}>
+							<button class={styles.action} onClick={setRenameMode}>
 								<span class="icon-rename"></span> Переименовать
 							</button>
 							<a target="_blank" class={styles.action} href={generateLink(getItemPath())}><span
