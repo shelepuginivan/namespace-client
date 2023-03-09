@@ -74,7 +74,9 @@ class FSItemParser implements IFSItemParser {
 		return type === 'text' || visibleSubtypes.includes(subtype)
 	}
 
-	getItemDescription(fileSystemItem: FileSystemItem) {
+	getItemType(fileSystemItem?: FileSystemItem) {
+		if (!fileSystemItem) return ''
+
 		return this.fileTypeDescription[fileSystemItem.extension.replace('.', '')] || fileSystemItem.mimetype
 	}
 
@@ -94,7 +96,9 @@ class FSItemParser implements IFSItemParser {
 		return this.extensionIcons[fileSystemItem.extension.replace('.', '')] || defaultFile
 	}
 
-	getReadableSize(fileSystemItem: FileSystemItem): string {
+	getReadableSize(fileSystemItem?: FileSystemItem): string {
+		if (!fileSystemItem) return ''
+
 		const units = ['Б', 'КБ', 'МБ', 'ГБ']
 
 		for (let i = 0; i < units.length; i++) {
