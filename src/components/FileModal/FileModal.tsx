@@ -14,10 +14,7 @@ const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
 	const getCWD = currentWorkingDirectory[0]
 	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
-	const [getItemName, setItemName] = createSignal<string>('')
-	const [getItemPath, setItemPath] = createSignal<string>('')
-	const [getItemDescription, setItemDescription] = createSignal<string>('')
-	const [getItemSize, setItemSize] = createSignal<string>('')
+	const [getOpenedFile, setOpenedFile] = createSignal<FileSystemItem>()
 	const [getInRenameMode, setInRenameMode] = createSignal<boolean>(false)
 	const [getNewName, setNewName] = createSignal<string>('')
 
@@ -27,10 +24,7 @@ const FileModal = (): JSX.Element => {
 		const openedFile = getFsItemOpenedInModal()
 
 		if (openedFile instanceof FileSystemItem) {
-			setItemName(openedFile.name)
-			setItemPath(openedFile.path)
-			setItemDescription(FSItemParser.getItemDescription(openedFile))
-			setItemSize(FSItemParser.getReadableSize(openedFile))
+			setOpenedFile(openedFile)
 			setNewName(openedFile.name)
 		}
 	})
@@ -42,7 +36,7 @@ const FileModal = (): JSX.Element => {
 
 	const deleteItem = () => {
 		try {
-			getSocketioClient().emit('deleteItem', getItemPath())
+			getSocketioClient().emit('deleteItem', getOpenedFile()?.path)
 		} finally {
 			closeModal()
 		}
@@ -50,10 +44,10 @@ const FileModal = (): JSX.Element => {
 
 	const renameItem = () => {
 		try {
-			const itemToRename = `${getCWD()}/${getItemName()}`
+			const itemToRename = `${getCWD()}/${getOpenedFile()?.name}`
 			const newName = `${getCWD()}/${getNewName()}`
 
-			getSocketioClient()?.emit('renameItem', itemToRename, newName)
+			getSocketioClient().emit('renameItem', itemToRename, newName)
 		} finally {
 			closeModal()
 		}
@@ -67,7 +61,7 @@ const FileModal = (): JSX.Element => {
 	return (
 		<dialog class={styles.fileModal} open={Boolean(getFsItemOpenedInModal())}>
 			<header>
-				<h2>{getItemName()}</h2>
+				<h2>{getOpenedFile()?.name}</h2>
 				<i class={`icon-close ${styles.closeButton}`} onclick={closeModal}></i>
 			</header>
 			<main>
@@ -77,9 +71,9 @@ const FileModal = (): JSX.Element => {
 					<table>
 						<caption>Информация</caption>
 						<tbody>
-							<tr> <td>Имя файла:</td> <td>{getItemName()}</td> </tr>
-							<tr> <td>Тип:</td> <td>{getItemDescription()}</td> </tr>
-							<tr> <td>Размер</td> <td>{getItemSize()}</td> </tr>
+							<tr> <td>Имя файла:</td> <td>{getOpenedFile()?.name}</td> </tr>
+							<tr> <td>Тип:</td> <td>{FSItemParser.getItemType(getOpenedFile())}</td> </tr>
+							<tr> <td>Размер:</td> <td>{FSItemParser.getReadableSize(getOpenedFile())}</td> </tr>
 						</tbody>
 					</table>
 
@@ -98,7 +92,7 @@ const FileModal = (): JSX.Element => {
 							<button class={styles.action} onClick={setRenameMode}>
 								<span class="icon-rename"></span> Переименовать
 							</button>
-							<a target="_blank" class={styles.action} href={generateLink(getItemPath())}><span
+							<a target="_blank" class={styles.action} href={generateLink(getOpenedFile()?.path)}><span
 								class="icon-download"></span>Скачать</a>
 							<button class={styles.action} onClick={deleteItem}><span
 								class="icon-delete"></span> Удалить
