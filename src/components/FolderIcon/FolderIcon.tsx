@@ -20,6 +20,10 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
 
+	const dragStartHandler = (e: DragEvent) => {
+		e.dataTransfer.setData('text', JSON.stringify(props))
+	}
+
 	const dropHandler = (e: DragEvent) => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -35,9 +39,11 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 		<div
 			class={styles.folderIcon}
 			data-displayicon={getShowFileIcons()}
+			draggable={true}
 			ondblclick={() => setCWD(props.path)}
 			oncontextmenu={rightClickHandler}
 			ondragenter={preventEventDefault}
+			ondragstart={dragStartHandler}
 			ondragover={preventEventDefault}
 			ondragleave={preventEventDefault}
 			ondrop={dropHandler}
