@@ -14,16 +14,14 @@ import txt from '../assets/fileExtensionIcons/txt.svg'
 import url from '../assets/fileExtensionIcons/url.svg'
 import vim from '../assets/fileExtensionIcons/vim.svg'
 import xml from '../assets/fileExtensionIcons/xml.svg'
-
 import archive from '../assets/fileTypeIcons/archive.svg'
 import audio from '../assets/fileTypeIcons/audio.svg'
 import defaultFile from '../assets/fileTypeIcons/defaultFile.svg'
 import folder from '../assets/fileTypeIcons/folder.svg'
 import image from '../assets/fileTypeIcons/image.svg'
 import video from '../assets/fileTypeIcons/video.svg'
-
-import {IFSItemParser} from './interfaces/IFSItemParser'
 import FileSystemItem from './FileSystemItem'
+import {IFSItemParser} from './interfaces/IFSItemParser'
 
 class FSItemParser implements IFSItemParser {
 	private readonly extensionIcons = {
@@ -86,10 +84,10 @@ class FSItemParser implements IFSItemParser {
 
 		if (fileSystemItem.mimetype) {
 			switch (fileSystemItem.mimetype.split('/')[0]) {
-				case 'audio': return audio
-				case 'image': return image
-				case 'video': return video
-				default:
+			case 'audio': return audio
+			case 'image': return image
+			case 'video': return video
+			default:
 			}
 		}
 

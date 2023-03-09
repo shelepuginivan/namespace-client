@@ -25,7 +25,6 @@ const FileModal = (): JSX.Element => {
 		const openedFile = getFsItemOpenedInModal()
 
 		if (openedFile instanceof FileSystemItem) {
-
 			setItemName(openedFile.name)
 			setItemPath(openedFile.path)
 			setItemDescription(FSItemParser.getItemDescription(openedFile))
