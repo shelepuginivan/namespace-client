@@ -7,8 +7,8 @@ import FileSystemItem from '../../utils/FileSystemItem'
 import FSItemParser from '../../utils/FSItemParser'
 import {generateLink} from '../../utils/generateLink'
 import Preview from '../Preview/Preview'
+import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
-import Input from '../../ui/Input/Input'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
@@ -17,8 +17,6 @@ const FileModal = (): JSX.Element => {
 	const [getOpenedFile, setOpenedFile] = createSignal<FileSystemItem>()
 	const [getInRenameMode, setInRenameMode] = createSignal<boolean>(false)
 	const [getNewName, setNewName] = createSignal<string>('')
-
-	let renameInput: HTMLInputElement
 
 	createEffect(() => {
 		const openedFile = getFsItemOpenedInModal()
@@ -53,11 +51,6 @@ const FileModal = (): JSX.Element => {
 		}
 	}
 
-	const setRenameMode = () => {
-		setInRenameMode(true)
-		renameInput.select()
-	}
-
 	return (
 		<dialog class={styles.fileModal} open={Boolean(getFsItemOpenedInModal())}>
 			<header>
@@ -79,17 +72,14 @@ const FileModal = (): JSX.Element => {
 
 					<div class={styles.actions}>
 						<Show keyed when={!getInRenameMode()} fallback={
-							<div class={styles.renameMenu}>
-								<Input
-									ref={renameInput}
-									onchange={e => setNewName((e.target as HTMLInputElement).value)} type="text"
-									value={getNewName()}
-								/>
-								<button class={`${styles.button} ${styles.cancel}`} onClick={() => setInRenameMode(false)}>Отмена</button>
-								<button class={`${styles.button} ${styles.submit}`} onClick={renameItem}>Сохранить</button>
-							</div>
+							<RenameMenu
+								currentName={getNewName()}
+								onCancel={() => setInRenameMode(false)}
+								onChangeName={e => setNewName((e.target as HTMLInputElement).value)}
+								onSubmit={renameItem}
+							/>
 						}>
-							<button class={styles.action} onClick={setRenameMode}>
+							<button class={styles.action} onClick={() => setInRenameMode(true)}>
 								<span class="icon-rename"></span> Переименовать
 							</button>
 							<a target="_blank" class={styles.action} href={generateLink(getOpenedFile()?.path)}><span
