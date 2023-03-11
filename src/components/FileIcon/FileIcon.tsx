@@ -15,7 +15,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 		e.dataTransfer.setData('text', JSON.stringify(props))
 	}
 
-	const rightClickHandler = (e: Event) => {
+	const rightClickHandler = (e: MouseEvent) => {
 		e.preventDefault()
 		setFsItemOpenedInModal(new FileSystemItem(props))
 	}
