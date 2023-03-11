@@ -1,0 +1,24 @@
+.button {
+	transition: var(--transition);
+	height: 36px;
+	width: fit-content;
+	outline: 1px solid var(--gray);
+	background-color: transparent;
+	font-size: 0.8rem;
+}
+
+.button label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 5px 10px 5px 10px;
+}
+
+.button input {
+	display: none;
+}
+
+.button:hover {
+	background-color: var(--lightgray);
+}
