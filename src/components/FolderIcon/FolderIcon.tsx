@@ -6,8 +6,8 @@ import showFileIcons from '../../store/showFileIcons'
 import socketioClient from '../../store/socketioClient'
 import FileSystemItem from '../../utils/FileSystemItem'
 import styles from './FolderIcon.module.css'
-import FSItemParser from '../../utils/FSItemParser'
 import {preventEventDefault} from '../../utils/preventEventDefault'
+import {FileData} from '../../utils/FileData'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
@@ -50,7 +50,7 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 		>
 			<img
 				draggable={false}
-				src={FSItemParser.getItemIcon(props)}
+				src={new FileData(props).icon}
 				alt={props.extension}
 			/>
 			<p>{props.name}</p>

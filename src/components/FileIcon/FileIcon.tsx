@@ -3,9 +3,9 @@ import {JSX} from 'solid-js'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import showFileIcons from '../../store/showFileIcons'
 import FileSystemItem from '../../utils/FileSystemItem'
-import FSItemParser from '../../utils/FSItemParser'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
 import styles from './FileIcon.module.css'
+import {FileData} from '../../utils/FileData'
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	const getShowFileIcons = showFileIcons[0]
@@ -31,7 +31,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 		>
 			<img
 				draggable={false}
-				src={FSItemParser.getItemIcon(props)}
+				src={new FileData(props).icon}
 				alt={props.extension}
 			/>
 			<p>{props.name}</p>

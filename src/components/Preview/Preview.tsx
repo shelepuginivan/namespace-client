@@ -3,7 +3,7 @@ import {JSX, Match, Switch} from 'solid-js'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import {generatePreviewLink} from '../../utils/generatePreviewLink'
 import styles from './Preview.module.css'
-import FSItemParser from '../../utils/FSItemParser'
+import {FileData} from '../../utils/FileData'
 
 const Preview = (): JSX.Element => {
 	const openedItem = fsItemOpenedInModal[0]
@@ -14,7 +14,7 @@ const Preview = (): JSX.Element => {
 				fallback={
 					<img
 						draggable={false}
-						src={FSItemParser.getItemIcon(openedItem())}
+						src={openedItem() ? new FileData(openedItem()).icon : ''}
 						alt="Не удалось загрузить фотографию"
 					/>
 			}>
@@ -29,7 +29,7 @@ const Preview = (): JSX.Element => {
 				<Match keyed when={openedItem()?.mimetype.startsWith('audio')}>
 					<audio controls preload="metadata" src={generatePreviewLink(openedItem().path)}></audio>
 				</Match>
-				<Match keyed when={FSItemParser.canBeDisplayedInIframe(openedItem())}>
+				<Match keyed when={openedItem() && new FileData(openedItem()).displayable}>
 					<iframe height="100%" class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
 				</Match>
 			</Switch>

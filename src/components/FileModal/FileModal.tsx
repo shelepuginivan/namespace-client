@@ -4,13 +4,13 @@ import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import socketioClient from '../../store/socketioClient'
 import FileSystemItem from '../../utils/FileSystemItem'
-import FSItemParser from '../../utils/FSItemParser'
 import {generateLink} from '../../utils/generateLink'
 import ActionsMenu from '../ActionsMenu/ActionsMenu'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
 import FileStats from '../FileStats/FileStats'
+import {FileData} from '../../utils/FileData'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
@@ -65,8 +65,8 @@ const FileModal = (): JSX.Element => {
 				<section class={styles.menu}>
 					<FileStats
 						filename={getOpenedFile()?.name}
-						type={FSItemParser.getItemType(getOpenedFile())}
-						sizeString={FSItemParser.getReadableSize(getOpenedFile())}
+						type={getOpenedFile() ? new FileData(getOpenedFile()).type : ''}
+						sizeString={getOpenedFile() ? new FileData(getOpenedFile()).sizeString : ''}
 					/>
 
 					<div class={styles.actions}>
