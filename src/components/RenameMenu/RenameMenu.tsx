@@ -2,6 +2,7 @@ import {JSX, onMount} from 'solid-js'
 
 import styles from './RenameMenu.module.css'
 import Input from '../../ui/Input/Input'
+import ActionButton from '../../ui/ActionButton/ActionButton'
 
 type PropsType = {
 	currentName: string
@@ -22,16 +23,8 @@ const RenameMenu = (props: PropsType): JSX.Element => {
 				onchange={props.onChangeName} type="text"
 				value={props.currentName}
 			/>
-			<button
-				onClick={props.onCancel}
-			>
-				Отмена
-			</button>
-			<button
-				onClick={props.onSubmit}
-			>
-				Сохранить
-			</button>
+			<ActionButton onClick={props.onCancel}>Отмена</ActionButton>
+			<ActionButton onClick={props.onSubmit}>Сохранить</ActionButton>
 		</menu>
 	)
 }
