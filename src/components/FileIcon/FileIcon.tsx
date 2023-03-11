@@ -1,6 +1,5 @@
 import {JSX} from 'solid-js'
 
-import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import showFileIcons from '../../store/showFileIcons'
 import FileSystemItem from '../../utils/FileSystemItem'
@@ -10,13 +9,7 @@ import styles from './FileIcon.module.css'
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	const getShowFileIcons = showFileIcons[0]
-	const setCWD = currentWorkingDirectory[1]
 	const setFsItemOpenedInModal = fsItemOpenedInModal[1]
-
-	const doubleClickHandler = () => {
-		if (props.isDirectory) return setCWD(props.path)
-		setFsItemOpenedInModal(new FileSystemItem(props))
-	}
 
 	const dragStartHandler = (e: DragEvent) => {
 		e.dataTransfer.setData('text', JSON.stringify(props))
@@ -31,7 +24,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 		<div
 			data-displayicon={getShowFileIcons()}
 			class={styles.fileIcon}
-			ondblclick={doubleClickHandler}
+			ondblclick={() => setFsItemOpenedInModal(new FileSystemItem(props))}
 			oncontextmenu={rightClickHandler}
 			draggable={true}
 			ondragstart={dragStartHandler}
