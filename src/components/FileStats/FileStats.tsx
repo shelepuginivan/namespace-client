@@ -1,4 +1,4 @@
-import {Component, JSX} from 'solid-js'
+import {JSX} from 'solid-js'
 
 type PropsType = {
 	filename: string
@@ -6,7 +6,7 @@ type PropsType = {
 	sizeString: string
 }
 
-const FileStats: Component = (props: PropsType): JSX.Element => {
+const FileStats = (props: PropsType): JSX.Element => {
 	return (
 		<table>
 			<caption>Информация</caption>
