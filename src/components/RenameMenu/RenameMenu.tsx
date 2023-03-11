@@ -23,8 +23,12 @@ const RenameMenu = (props: PropsType): JSX.Element => {
 				onchange={props.onChangeName} type="text"
 				value={props.currentName}
 			/>
-			<ActionButton onClick={props.onCancel}>Отмена</ActionButton>
-			<ActionButton onClick={props.onSubmit}>Сохранить</ActionButton>
+			<ActionButton onClick={props.onCancel}>
+				<span>Отмена</span>
+			</ActionButton>
+			<ActionButton onClick={props.onSubmit}>
+				<span>Сохранить</span>
+			</ActionButton>
 		</menu>
 	)
 }

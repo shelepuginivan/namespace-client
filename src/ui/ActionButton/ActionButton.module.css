@@ -12,3 +12,8 @@
 	color: var(--darkgray);
 	cursor: pointer;
 }
+
+.button > span {
+	flex-grow: 1;
+	text-align: right;
+}
