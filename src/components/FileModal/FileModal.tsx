@@ -10,6 +10,7 @@ import ActionsMenu from '../ActionsMenu/ActionsMenu'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
+import FileStats from '../FileStats/FileStats'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
@@ -62,14 +63,11 @@ const FileModal = (): JSX.Element => {
 				<Preview/>
 
 				<section class={styles.menu}>
-					<table>
-						<caption>Информация</caption>
-						<tbody>
-							<tr> <td>Имя файла:</td> <td>{getOpenedFile()?.name}</td> </tr>
-							<tr> <td>Тип:</td> <td>{FSItemParser.getItemType(getOpenedFile())}</td> </tr>
-							<tr> <td>Размер:</td> <td>{FSItemParser.getReadableSize(getOpenedFile())}</td> </tr>
-						</tbody>
-					</table>
+					<FileStats
+						filename={getOpenedFile()?.name}
+						type={FSItemParser.getItemType(getOpenedFile())}
+						sizeString={FSItemParser.getReadableSize(getOpenedFile())}
+					/>
 
 					<div class={styles.actions}>
 						<Show keyed when={!getInRenameMode()} fallback={
