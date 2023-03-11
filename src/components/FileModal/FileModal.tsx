@@ -6,6 +6,7 @@ import socketioClient from '../../store/socketioClient'
 import FileSystemItem from '../../utils/FileSystemItem'
 import FSItemParser from '../../utils/FSItemParser'
 import {generateLink} from '../../utils/generateLink'
+import ActionsMenu from '../ActionsMenu/ActionsMenu'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
@@ -79,14 +80,11 @@ const FileModal = (): JSX.Element => {
 								onSubmit={renameItem}
 							/>
 						}>
-							<button class={styles.action} onClick={() => setInRenameMode(true)}>
-								<span class="icon-rename"></span> Переименовать
-							</button>
-							<a target="_blank" class={styles.action} href={generateLink(getOpenedFile()?.path)}><span
-								class="icon-download"></span>Скачать</a>
-							<button class={styles.action} onClick={deleteItem}><span
-								class="icon-delete"></span> Удалить
-							</button>
+							<ActionsMenu
+								downloadLink={generateLink(getOpenedFile()?.path)}
+								onDelete={deleteItem}
+								onSetRenameMode={() => setInRenameMode(true)}
+							/>
 						</Show>
 					</div>
 				</section>
