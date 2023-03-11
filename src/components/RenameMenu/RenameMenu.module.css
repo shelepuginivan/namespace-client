@@ -1,0 +1,19 @@
+.renameMenu {
+	display: flex;
+	flex-direction: column;
+}
+
+.renameMenu > * {
+	margin-top: 10px;
+}
+
+.renameMenu button {
+	width: 100%;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	outline: 1px solid var(--darkgray);
+	color: var(--darkgray);
+	padding: 5px;
+	cursor: pointer;
+}
