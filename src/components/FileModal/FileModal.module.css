@@ -60,24 +60,6 @@
 	padding-inline: 25%;
 }
 
-.action {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 5px 15px 5px 15px;
-	margin-top: 10px;
-	color: var(--darkgray);
-	outline: 1px solid var(--darkgray);
-	text-decoration: none;
-	font-size: 10pt;
-}
-
-button.action {
-	border: none;
-	background: transparent;
-	cursor: pointer;
-}
-
 .closeButton {
 	aspect-ratio: 1 / 1;
 	cursor: pointer;
