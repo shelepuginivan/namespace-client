@@ -1,12 +1,19 @@
-import {JSX, Match, Switch} from 'solid-js'
+import {createEffect, createSignal, JSX, Match, Switch} from 'solid-js'
 
+import connectionURL from '../../store/connectionURL'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import {FileData} from '../../utils/FileData'
-import {generatePreviewLink} from '../../utils/generatePreviewLink'
 import styles from './Preview.module.css'
+import {ApiService} from '../../utils/ApiService'
 
 const Preview = (): JSX.Element => {
 	const openedItem = fsItemOpenedInModal[0]
+	const getConnectionURL = connectionURL[0]
+	const [getPreviewLink, setPreviewLink] = createSignal<string>('')
+
+	createEffect(() => {
+		setPreviewLink(ApiService.previewLink(getConnectionURL(), openedItem()?.path))
+	})
 
 	return (
 		<div class={styles.preview}>
@@ -19,18 +26,34 @@ const Preview = (): JSX.Element => {
 					/>
 				}>
 				<Match keyed when={openedItem()?.mimetype.startsWith('image')}>
-					<img class={styles.previewContent} src={generatePreviewLink(openedItem().path)} alt={openedItem().name}/>
+					<img
+						class={styles.previewContent}
+						src={getPreviewLink()}
+						alt={openedItem().name}
+					/>
 				</Match>
 				<Match keyed when={openedItem()?.mimetype.startsWith('video')}>
-					<video controls preload="metadata" class={styles.previewContent} src={generatePreviewLink(openedItem().path)}>
+					<video
+						controls
+						preload="metadata"
+						class={styles.previewContent}
+						src={getPreviewLink()}
+					>
 						Ваш браузер не поддерживает тег <kbd>&lt;video&gt;</kbd>
 					</video>
 				</Match>
 				<Match keyed when={openedItem()?.mimetype.startsWith('audio')}>
-					<audio controls preload="metadata" src={generatePreviewLink(openedItem().path)}></audio>
+					<audio controls
+						   preload="metadata"
+						   src={getPreviewLink()}
+					/>
 				</Match>
 				<Match keyed when={openedItem() && new FileData(openedItem()).displayable}>
-					<iframe height="100%" class={styles.previewContent} src={generatePreviewLink(openedItem().path)}></iframe>
+					<iframe
+						height="100%"
+						class={styles.previewContent}
+						src={getPreviewLink()}
+					/>
 				</Match>
 			</Switch>
 		</div>
