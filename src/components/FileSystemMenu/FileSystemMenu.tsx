@@ -1,4 +1,3 @@
-import ky from 'ky'
 import {JSX, ParentProps} from 'solid-js'
 
 import connectionURL from '../../store/connectionURL'
@@ -6,6 +5,7 @@ import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import SocketioClient from '../../store/socketioClient'
 import {preventEventDefault} from '../../utils/preventEventDefault'
 import styles from './FileSystemMenu.module.css'
+import {ApiService} from '../../utils/ApiService'
 
 const FileSystemMenu = (props: ParentProps): JSX.Element => {
 	const getCWD = currentWorkingDirectory[0]
@@ -16,22 +16,10 @@ const FileSystemMenu = (props: ParentProps): JSX.Element => {
 		e.preventDefault()
 		e.stopPropagation()
 
-		const files: FileList = (e as DragEvent).dataTransfer.files
-		const fileUploadBody = new FormData()
-
+		const files = (e as DragEvent).dataTransfer.files
 		const urlTransferCandidate = (e as DragEvent).dataTransfer.getData('URL')
 
-		if (urlTransferCandidate) {
-			const url = new URL(urlTransferCandidate)
-			const urlFile = new Blob([`[InternetShortcut]\r\nURL=${url}`])
-
-			fileUploadBody.append(`${getCWD()}/${url.hostname}${url.pathname.replace(/\//g, '-')}.url`, urlFile)
-		}
-
-		Array.from(files).forEach(file => fileUploadBody.append(`${getCWD()}/${file.name}`, file))
-
-		ky.post(`${getConnectionURL()}/files`, {body: fileUploadBody})
-			.then(() => getSocketioClient().emit('updateItems', getCWD()))
+		ApiService.uploadFiles(getCWD(), getConnectionURL(), getSocketioClient(), files, urlTransferCandidate)
 	}
 
 
