@@ -16,12 +16,17 @@ const RenameMenu = (props: PropsType): JSX.Element => {
 
 	onMount(() => inputRef.select())
 
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.code === 'Enter') props.onSubmit()
+	}
+
 	return (
 		<menu class={styles.renameMenu}>
 			<Input
 				ref={inputRef}
 				oninput={props.onInputName} type="text"
 				value={props.currentName}
+				onkeydown={keydownHandler}
 			/>
 			<ActionButton onClick={props.onCancel}>
 				<span>Отмена</span>
