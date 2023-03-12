@@ -4,10 +4,10 @@ import {createSignal, JSX} from 'solid-js'
 import connectionURL from '../../store/connectionURL'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import socketioClient from '../../store/socketioClient'
-import page from '../Page.module.css'
-import styles from './AuthorizationPage.module.css'
 import AuthInput from '../../ui/AuthInput/AuthInput'
 import SubmitForm from '../../ui/SubmitForm/SubmitForm'
+import page from '../Page.module.css'
+import styles from './AuthorizationPage.module.css'
 
 const AuthorizationPage = (): JSX.Element => {
 	const [getPassword, setPassword] = createSignal<string>('')

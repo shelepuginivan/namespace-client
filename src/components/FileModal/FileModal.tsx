@@ -3,14 +3,14 @@ import {createEffect, createSignal, JSX, Show} from 'solid-js'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import socketioClient from '../../store/socketioClient'
+import {FileData} from '../../utils/FileData'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {generateLink} from '../../utils/generateLink'
 import ActionsMenu from '../ActionsMenu/ActionsMenu'
+import FileStats from '../FileStats/FileStats'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
-import FileStats from '../FileStats/FileStats'
-import {FileData} from '../../utils/FileData'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]

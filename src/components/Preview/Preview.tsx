@@ -1,9 +1,9 @@
 import {JSX, Match, Switch} from 'solid-js'
 
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
+import {FileData} from '../../utils/FileData'
 import {generatePreviewLink} from '../../utils/generatePreviewLink'
 import styles from './Preview.module.css'
-import {FileData} from '../../utils/FileData'
 
 const Preview = (): JSX.Element => {
 	const openedItem = fsItemOpenedInModal[0]
@@ -17,7 +17,7 @@ const Preview = (): JSX.Element => {
 						src={openedItem() ? new FileData(openedItem()).icon : ''}
 						alt="Не удалось загрузить фотографию"
 					/>
-			}>
+				}>
 				<Match keyed when={openedItem()?.mimetype.startsWith('image')}>
 					<img class={styles.previewContent} src={generatePreviewLink(openedItem().path)} alt={openedItem().name}/>
 				</Match>

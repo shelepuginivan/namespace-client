@@ -1,13 +1,14 @@
 import {JSX} from 'solid-js'
-import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
+
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import showFileIcons from '../../store/showFileIcons'
 import socketioClient from '../../store/socketioClient'
-import FileSystemItem from '../../utils/FileSystemItem'
-import styles from './FolderIcon.module.css'
-import {preventEventDefault} from '../../utils/preventEventDefault'
 import {FileData} from '../../utils/FileData'
+import FileSystemItem from '../../utils/FileSystemItem'
+import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
+import {preventEventDefault} from '../../utils/preventEventDefault'
+import styles from './FolderIcon.module.css'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const getSocketioClient = socketioClient[0]

@@ -1,8 +1,8 @@
 import {JSX, onMount} from 'solid-js'
 
-import styles from './RenameMenu.module.css'
-import Input from '../../ui/Input/Input'
 import ActionButton from '../../ui/ActionButton/ActionButton'
+import Input from '../../ui/Input/Input'
+import styles from './RenameMenu.module.css'
 
 type PropsType = {
 	currentName: string
