@@ -4,34 +4,27 @@ import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import socketioClient from '../../store/socketioClient'
 import {FileData} from '../../utils/FileData'
-import FileSystemItem from '../../utils/FileSystemItem'
-import {generateLink} from '../../utils/generateLink'
 import ActionsMenu from '../ActionsMenu/ActionsMenu'
 import FileStats from '../FileStats/FileStats'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
+import {ApiService} from '../../utils/ApiService'
+import connectionURL from '../../store/connectionURL'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
 	const getCWD = currentWorkingDirectory[0]
-	const [getFsItemOpenedInModal, setFsItemOpenedInModal] = fsItemOpenedInModal
-	const [getOpenedFile, setOpenedFile] = createSignal<FileSystemItem>()
+	const getConnectionURL = connectionURL[0]
+	const [getOpenedFile, setOpenedFile] = fsItemOpenedInModal
 	const [getInRenameMode, setInRenameMode] = createSignal<boolean>(false)
 	const [getNewName, setNewName] = createSignal<string>('')
 
-	createEffect(() => {
-		const openedFile = getFsItemOpenedInModal()
-
-		if (openedFile instanceof FileSystemItem) {
-			setOpenedFile(openedFile)
-			setNewName(openedFile.name)
-		}
-	})
+	createEffect(() => setNewName(getOpenedFile()?.name))
 
 	const closeModal = () => {
 		setInRenameMode(false)
-		setFsItemOpenedInModal(null)
+		setOpenedFile(null)
 	}
 
 	const deleteItem = () => {
@@ -54,7 +47,7 @@ const FileModal = (): JSX.Element => {
 	}
 
 	return (
-		<dialog class={styles.fileModal} open={Boolean(getFsItemOpenedInModal())}>
+		<dialog class={styles.fileModal} open={Boolean(getOpenedFile())}>
 			<header>
 				<h2>{getOpenedFile()?.name}</h2>
 				<i class={`icon-close ${styles.closeButton}`} onclick={closeModal}></i>
@@ -79,7 +72,7 @@ const FileModal = (): JSX.Element => {
 							/>
 						}>
 							<ActionsMenu
-								downloadLink={generateLink(getOpenedFile()?.path)}
+								downloadLink={ApiService.downloadLink(getConnectionURL(), getOpenedFile()?.path)}
 								onDelete={deleteItem}
 								onSetRenameMode={() => setInRenameMode(true)}
 							/>
