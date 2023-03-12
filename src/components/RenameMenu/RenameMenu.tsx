@@ -7,8 +7,8 @@ import ActionButton from '../../ui/ActionButton/ActionButton'
 type PropsType = {
 	currentName: string
 	onCancel(e: Event): unknown | Promise<unknown>
-	onChangeName(e: Event): unknown | Promise<unknown>
-	onSubmit(e: Event): unknown | Promise<unknown>
+	onInputName(e: Event): unknown | Promise<unknown>
+	onSubmit(e?: Event): unknown | Promise<unknown>
 }
 
 const RenameMenu = (props: PropsType): JSX.Element => {
@@ -20,7 +20,7 @@ const RenameMenu = (props: PropsType): JSX.Element => {
 		<menu class={styles.renameMenu}>
 			<Input
 				ref={inputRef}
-				onchange={props.onChangeName} type="text"
+				oninput={props.onInputName} type="text"
 				value={props.currentName}
 			/>
 			<ActionButton onClick={props.onCancel}>

@@ -74,7 +74,7 @@ const FileModal = (): JSX.Element => {
 							<RenameMenu
 								currentName={getNewName()}
 								onCancel={() => setInRenameMode(false)}
-								onChangeName={e => setNewName((e.target as HTMLInputElement).value)}
+								onInputName={e => setNewName((e.target as HTMLInputElement).value)}
 								onSubmit={renameItem}
 							/>
 						}>
