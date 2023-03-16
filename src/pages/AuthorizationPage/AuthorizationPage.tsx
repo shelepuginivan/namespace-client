@@ -8,10 +8,13 @@ import AuthInput from '../../ui/AuthInput/AuthInput'
 import SubmitForm from '../../ui/SubmitForm/SubmitForm'
 import page from '../Page.module.css'
 import styles from './AuthorizationPage.module.css'
+import messageDialogCurrent from '../../store/currentSocketError'
+import {SocketError} from '../../utils/types/SocketError'
 
 const AuthorizationPage = (): JSX.Element => {
 	const [getPassword, setPassword] = createSignal<string>('')
 	const [getConnectionURL, setConnectionURL] = connectionURL
+	const setMessageDialogCurrent = messageDialogCurrent[1]
 	const setSocketioClient = socketioClient[1]
 	const setCWD = currentWorkingDirectory[1]
 
@@ -33,6 +36,15 @@ const AuthorizationPage = (): JSX.Element => {
 				getConnectionURL(),
 				{auth: {password: getPassword()}}
 			)
+
+			socket.on('error', (msg: string) => {
+				const socketError: SocketError = JSON.parse(msg)
+				setMessageDialogCurrent(socketError)
+
+				setTimeout(() => {
+					setMessageDialogCurrent(null)
+				}, 5000)
+			})
 
 			setSocketioClient(socket.connect())
 			setCWD('/')
