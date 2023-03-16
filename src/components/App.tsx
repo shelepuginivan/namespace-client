@@ -7,6 +7,7 @@ import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
 import socketioClient from '../store/socketioClient'
 import FileModal from './FileModal/FileModal'
+import ErrorMessage from './ErrorMessage/ErrorMessage'
 
 const App = (): JSX.Element => {
 	const [getSocketioClient, setSocketioClient] = socketioClient
@@ -35,10 +36,13 @@ const App = (): JSX.Element => {
 	})
 
 	return (
-		<Show keyed when={getSocketioClient()} fallback={AuthorizationPage}>
-			<FileSystemPage/>
-			<FileModal/>
-		</Show>
+		<>
+			<Show keyed when={getSocketioClient()} fallback={AuthorizationPage}>
+				<FileSystemPage/>
+				<FileModal/>
+			</Show>
+			<ErrorMessage/>
+		</>
 	)
 }
 
