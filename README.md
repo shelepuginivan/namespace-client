@@ -4,6 +4,8 @@
 	<p>Открытая облачная платформа</p>
 </div>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/88c25c65-c79d-47af-9151-4b726aceb4a7/deploy-status)](https://app.netlify.com/sites/namespace-client/deploys)
+
 ## О проекте
 
 nameSpace - открытая облачная платформа для локальной сети. Она позволяет запустить свой сервер
