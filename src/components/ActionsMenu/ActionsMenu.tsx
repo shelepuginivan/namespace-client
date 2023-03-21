@@ -16,7 +16,7 @@ const ActionsMenu = (props: PropsType): JSX.Element => {
 				<i class="icon-rename"/>
 				<span>Переименовать</span>
 			</ActionButton>
-			<a href={props.downloadLink}>
+			<a target="_blank" href={props.downloadLink}>
 				<i class="icon-download"/>
 				<span>Скачать</span>
 			</a>
