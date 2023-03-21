@@ -5,7 +5,7 @@ import styles from './FileUploadInput.module.css'
 type PropsType = ParentProps & Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'type' | 'multiple'>
 
 const FileUploadInput = (props: PropsType): JSX.Element => {
-	const elementId = crypto.randomUUID()
+	const elementId = Date.now().toString(32)
 	const {children, ...inputProps} = props
 
 	return (
