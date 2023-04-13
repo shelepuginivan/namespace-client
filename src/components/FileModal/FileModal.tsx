@@ -47,40 +47,47 @@ const FileModal = (): JSX.Element => {
 	}
 
 	return (
-		<dialog class={styles.fileModal} open={Boolean(getOpenedFile())}>
-			<header>
-				<h2>{getOpenedFile()?.name}</h2>
-				<i class={`icon-close ${styles.closeButton}`} onclick={closeModal}></i>
-			</header>
-			<main>
-				<Preview/>
+		<>
+			<div
+				class={styles.backdrop}
+				data-opened={Boolean(getOpenedFile())}
+				onclick={closeModal}
+			></div>
+			<dialog class={styles.fileModal} open={Boolean(getOpenedFile())}>
+				<header>
+					<h2>{getOpenedFile()?.name}</h2>
+					<i class={`icon-close ${styles.closeButton}`} onclick={closeModal}></i>
+				</header>
+				<main>
+					<Preview/>
 
-				<section class={styles.menu}>
-					<FileStats
-						filename={getOpenedFile()?.name}
-						type={getOpenedFile() ? new FileData(getOpenedFile()).type : ''}
-						sizeString={getOpenedFile() ? new FileData(getOpenedFile()).sizeString : ''}
-					/>
+					<section class={styles.menu}>
+						<FileStats
+							filename={getOpenedFile()?.name}
+							type={getOpenedFile() ? new FileData(getOpenedFile()).type : ''}
+							sizeString={getOpenedFile() ? new FileData(getOpenedFile()).sizeString : ''}
+						/>
 
-					<div class={styles.actions}>
-						<Show keyed when={!getInRenameMode()} fallback={
-							<RenameMenu
-								currentName={getNewName()}
-								onCancel={() => setInRenameMode(false)}
-								onInputName={e => setNewName((e.target as HTMLInputElement).value)}
-								onSubmit={renameItem}
-							/>
-						}>
-							<ActionsMenu
-								downloadLink={ApiService.downloadLink(getConnectionURL(), getOpenedFile()?.path)}
-								onDelete={deleteItem}
-								onSetRenameMode={() => setInRenameMode(true)}
-							/>
-						</Show>
-					</div>
-				</section>
-			</main>
-		</dialog>
+						<div class={styles.actions}>
+							<Show keyed when={!getInRenameMode()} fallback={
+								<RenameMenu
+									currentName={getNewName()}
+									onCancel={() => setInRenameMode(false)}
+									onInputName={e => setNewName((e.target as HTMLInputElement).value)}
+									onSubmit={renameItem}
+								/>
+							}>
+								<ActionsMenu
+									downloadLink={ApiService.downloadLink(getConnectionURL(), getOpenedFile()?.path)}
+									onDelete={deleteItem}
+									onSetRenameMode={() => setInRenameMode(true)}
+								/>
+							</Show>
+						</div>
+					</section>
+				</main>
+			</dialog>
+		</>
 	)
 }
 

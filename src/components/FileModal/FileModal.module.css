@@ -1,3 +1,17 @@
+.backdrop {
+	display: none;
+}
+
+.backdrop[data-opened=true] {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--transparent-black)
+}
+
 .fileModal[open] {
 	position: fixed;
 	display: flex;
@@ -11,11 +25,8 @@
 	max-height: 80%;
 	border: none;
 	outline: 1px solid var(--darkgray);
-}
-
-.fileModal[open]::backdrop {
-	filter: blur(10px);
-	background: var(--transparent-black);
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 .fileModal header {
@@ -25,7 +36,7 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 5px;
+	padding: 10px;
 }
 
 .fileModal header h2 {
