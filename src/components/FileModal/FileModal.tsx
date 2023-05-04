@@ -1,4 +1,4 @@
-import {createEffect, createSignal, JSX, Show} from 'solid-js'
+import {createEffect, createSignal, JSX, onCleanup, onMount, Show} from 'solid-js'
 
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
@@ -20,6 +20,9 @@ const FileModal = (): JSX.Element => {
 	const [getInRenameMode, setInRenameMode] = createSignal<boolean>(false)
 	const [getNewName, setNewName] = createSignal<string>('')
 
+	onMount(() => document.addEventListener('keydown', keyDownHandler))
+	onCleanup(() => document.removeEventListener('keydown', keyDownHandler))
+
 	createEffect(() => setNewName(getOpenedFile()?.name))
 
 	const closeModal = () => {
@@ -31,6 +34,12 @@ const FileModal = (): JSX.Element => {
 		try {
 			getSocketioClient().emit('deleteItem', getOpenedFile()?.path)
 		} finally {
+			closeModal()
+		}
+	}
+
+	const keyDownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
 			closeModal()
 		}
 	}
@@ -52,8 +61,13 @@ const FileModal = (): JSX.Element => {
 				class={styles.backdrop}
 				data-opened={Boolean(getOpenedFile())}
 				onclick={closeModal}
+				onkeydown={keyDownHandler}
 			></div>
-			<dialog class={styles.fileModal} open={Boolean(getOpenedFile())}>
+			<dialog
+				class={styles.fileModal}
+				open={Boolean(getOpenedFile())}
+				onkeydown={keyDownHandler}
+			>
 				<header>
 					<h2>{getOpenedFile()?.name}</h2>
 					<i class={`icon-close ${styles.closeButton}`} onclick={closeModal}></i>
