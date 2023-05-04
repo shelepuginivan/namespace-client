@@ -25,46 +25,49 @@ import {IFileData} from './interfaces/IFileData'
 
 export class FileData implements IFileData {
 	private static _instances: FileData[] = []
-	private readonly _extensionIcons = {
-		apk,
-		css,
-		dll,
-		dmg,
-		html,
-		iso,
-		js,
-		pdf,
-		py,
-		sql,
-		rs,
-		txt,
-		url,
-		vim,
-		xml,
-		bz2: archive,
-		gz: archive,
-		raw: image,
-		rar: archive,
-		tar: archive,
-		zip: archive,
-		'7z': archive,
-		osu,
-		osb: osu,
-		osk: osu,
-		osr: osu,
-		osz: osu
-	}
-	private readonly _fileSystemItem
-	private readonly _filetype = {
-		py: 'Python File',
-		raw: 'Raw Image Format',
-		rs: 'Rust File',
-		osb: 'osu! storyboard',
-		osk: 'osu! skin archive',
-		osr: 'osu! replay',
-		osu: 'osu! difficulty',
-		osz: 'osu! beatmap archive'
-	}
+
+	private readonly _extensionIcons = new Map([
+		['apk', apk],
+		['css', css],
+		['dll', dll],
+		['dmg', dmg],
+		['html', html],
+		['iso', iso],
+		['js', js],
+		['pdf', pdf],
+		['py', py],
+		['sql', sql],
+		['rs', rs],
+		['txt', txt],
+		['url', url],
+		['vim', vim],
+		['xml', xml],
+		['bz2', archive],
+		['gz', archive],
+		['raw', image],
+		['rar', archive],
+		['tar', archive],
+		['zip', archive],
+		['7z', archive],
+		['osu', osu],
+		['osb', osu],
+		['osk', osu],
+		['osr', osu],
+		['osz', osu]
+	])
+
+	private readonly _fileSystemItem: FileSystemItem
+
+	private readonly _filetype = new Map([
+		['py', 'Python File'],
+		['raw', 'Raw Image Format'],
+		['rs', 'Rust File'],
+		['osb', 'osu! storyboard'],
+		['osk', 'osu! skin archive'],
+		['osr', 'osu! replay'],
+		['osu', 'osu! difficulty'],
+		['osz', 'osu! beatmap archive']
+	])
 
 	private _compareItems(x: FileSystemItem, y: FileSystemItem) {
 		return (
@@ -110,7 +113,7 @@ export class FileData implements IFileData {
 		}
 
 		const extension = this._fileSystemItem.extension.replace('.', '')
-		return this._extensionIcons[extension] || defaultFile
+		return this._extensionIcons.get(extension) || defaultFile
 	}
 
 	get item(): FileSystemItem {return this._fileSystemItem}
@@ -130,6 +133,6 @@ export class FileData implements IFileData {
 
 	get type(): string {
 		const extension = this._fileSystemItem.extension.replace('.', '')
-		return this._filetype[extension] || this._fileSystemItem.mimetype
+		return this._filetype.get(extension) || this._fileSystemItem.mimetype
 	}
 }
