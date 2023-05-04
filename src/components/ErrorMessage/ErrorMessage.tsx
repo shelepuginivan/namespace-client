@@ -1,7 +1,8 @@
 import {JSX} from 'solid-js'
-import styles from './errorMessage.module.css'
+
 import currentSocketError from '../../store/currentSocketError'
 import {errorType} from '../../utils/constants'
+import styles from './errorMessage.module.css'
 
 const ErrorMessage = (): JSX.Element => {
 	const getSocketError = currentSocketError[0]

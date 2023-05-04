@@ -6,8 +6,8 @@ import connectionURL from '../store/connectionURL'
 import currentWorkingDirectory from '../store/currentWorkingDirectory'
 import itemsInCurrentWorkingDirectory from '../store/itemsInCurrentWorkingDirectory'
 import socketioClient from '../store/socketioClient'
-import FileModal from './FileModal/FileModal'
 import ErrorMessage from './ErrorMessage/ErrorMessage'
+import FileModal from './FileModal/FileModal'
 
 const App = (): JSX.Element => {
 	const [getSocketioClient, setSocketioClient] = socketioClient

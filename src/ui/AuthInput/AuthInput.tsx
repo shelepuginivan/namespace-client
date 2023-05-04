@@ -1,4 +1,5 @@
 import {JSX} from 'solid-js'
+
 import styles from './AuthInput.module.css'
 
 type PropsType = JSX.InputHTMLAttributes<HTMLInputElement> & {

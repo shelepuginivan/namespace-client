@@ -2,14 +2,14 @@ import {io} from 'socket.io-client'
 import {createSignal, JSX} from 'solid-js'
 
 import connectionURL from '../../store/connectionURL'
+import messageDialogCurrent from '../../store/currentSocketError'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import socketioClient from '../../store/socketioClient'
 import AuthInput from '../../ui/AuthInput/AuthInput'
 import SubmitForm from '../../ui/SubmitForm/SubmitForm'
+import {SocketError} from '../../utils/types/SocketError'
 import page from '../Page.module.css'
 import styles from './AuthorizationPage.module.css'
-import messageDialogCurrent from '../../store/currentSocketError'
-import {SocketError} from '../../utils/types/SocketError'
 
 const AuthorizationPage = (): JSX.Element => {
 	const [getPassword, setPassword] = createSignal<string>('')

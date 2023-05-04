@@ -7,10 +7,10 @@ import socketioClient from '../../store/socketioClient'
 import {FileData} from '../../utils/FileData'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
+import {onFileIconDragEnd} from '../../utils/onFileIconDragEnd'
+import {onFileIconDragStart} from '../../utils/onFileIconDragStart'
 import {preventEventDefault} from '../../utils/preventEventDefault'
 import styles from './FolderIcon.module.css'
-import {onFileIconDragStart} from '../../utils/onFileIconDragStart'
-import {onFileIconDragEnd} from '../../utils/onFileIconDragEnd'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const getSocketioClient = socketioClient[0]

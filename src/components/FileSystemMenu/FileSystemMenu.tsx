@@ -3,9 +3,9 @@ import {JSX, ParentProps} from 'solid-js'
 import connectionURL from '../../store/connectionURL'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import SocketioClient from '../../store/socketioClient'
+import {ApiService} from '../../utils/ApiService'
 import {preventEventDefault} from '../../utils/preventEventDefault'
 import styles from './FileSystemMenu.module.css'
-import {ApiService} from '../../utils/ApiService'
 
 const FileSystemMenu = (props: ParentProps): JSX.Element => {
 	const getCWD = currentWorkingDirectory[0]

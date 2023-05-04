@@ -1,4 +1,5 @@
 import {JSX} from 'solid-js'
+
 import styles from './SubmitForm.module.css'
 
 type PropsType = Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'type'>

@@ -2,9 +2,9 @@ import {createEffect, createSignal, JSX, Match, Switch} from 'solid-js'
 
 import connectionURL from '../../store/connectionURL'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
+import {ApiService} from '../../utils/ApiService'
 import {FileData} from '../../utils/FileData'
 import styles from './Preview.module.css'
-import {ApiService} from '../../utils/ApiService'
 
 const Preview = (): JSX.Element => {
 	const openedItem = fsItemOpenedInModal[0]
@@ -43,9 +43,10 @@ const Preview = (): JSX.Element => {
 					</video>
 				</Match>
 				<Match keyed when={openedItem()?.mimetype.startsWith('audio')}>
-					<audio controls
-						   preload="metadata"
-						   src={getPreviewLink()}
+					<audio
+						controls
+						preload="metadata"
+						src={getPreviewLink()}
 					/>
 				</Match>
 				<Match keyed when={openedItem() && new FileData(openedItem()).displayable}>

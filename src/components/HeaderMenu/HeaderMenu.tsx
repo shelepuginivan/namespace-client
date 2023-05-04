@@ -6,9 +6,9 @@ import showFileIcons from '../../store/showFileIcons'
 import socketioClient from '../../store/socketioClient'
 import FileUploadInput from '../../ui/FileUploadInput/FileUploadInput'
 import HeaderMenuButton from '../../ui/HeaderMenuButton/HeaderMenuButton'
+import {ApiService} from '../../utils/ApiService'
 import {backDirectory} from '../../utils/backDirectory'
 import styles from './HeaderMenu.module.css'
-import {ApiService} from '../../utils/ApiService'
 
 const HeaderMenu = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]

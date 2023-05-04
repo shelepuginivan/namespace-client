@@ -1,16 +1,16 @@
 import {createEffect, createSignal, JSX, onCleanup, onMount, Show} from 'solid-js'
 
+import connectionURL from '../../store/connectionURL'
 import currentWorkingDirectory from '../../store/currentWorkingDirectory'
 import fsItemOpenedInModal from '../../store/fsItemOpenedInModal'
 import socketioClient from '../../store/socketioClient'
+import {ApiService} from '../../utils/ApiService'
 import {FileData} from '../../utils/FileData'
 import ActionsMenu from '../ActionsMenu/ActionsMenu'
 import FileStats from '../FileStats/FileStats'
 import Preview from '../Preview/Preview'
 import RenameMenu from '../RenameMenu/RenameMenu'
 import styles from './FileModal.module.css'
-import {ApiService} from '../../utils/ApiService'
-import connectionURL from '../../store/connectionURL'
 
 const FileModal = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
