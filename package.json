@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "host": "vite --host"
+	  "host": "vite --host",
+	  "lint": "eslint src --fix",
+	  "serve": "vite preview"
   },
   "license": "MIT",
   "devDependencies": {
