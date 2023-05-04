@@ -6,19 +6,12 @@ import {FileData} from '../../utils/FileData'
 import FileSystemItem from '../../utils/FileSystemItem'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
 import styles from './FileIcon.module.css'
+import {onFileIconDragStart} from '../../utils/onFileIconDragStart'
+import {onFileIconDragEnd} from '../../utils/onFileIconDragEnd'
 
 const FileIcon = (props: IFileSystemItem): JSX.Element => {
 	const getShowFileIcons = showFileIcons[0]
 	const setFsItemOpenedInModal = fsItemOpenedInModal[1]
-
-	const dragStartHandler = (e: DragEvent) => {
-		e.dataTransfer.setData('text', JSON.stringify(props))
-		;(e.target as HTMLDivElement).style.opacity = '0.6'
-	}
-
-	const dragEndHandler = (e: DragEvent) => {
-		(e.target as HTMLDivElement).style.opacity = 'initial'
-	}
 
 	const rightClickHandler = (e: MouseEvent) => {
 		e.preventDefault()
@@ -32,8 +25,8 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 			ondblclick={() => setFsItemOpenedInModal(new FileSystemItem(props))}
 			oncontextmenu={rightClickHandler}
 			draggable={true}
-			ondragstart={dragStartHandler}
-			ondragend={dragEndHandler}
+			ondragstart={onFileIconDragStart(props)}
+			ondragend={onFileIconDragEnd}
 		>
 			<img
 				draggable={false}

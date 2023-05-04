@@ -9,6 +9,8 @@ import FileSystemItem from '../../utils/FileSystemItem'
 import {IFileSystemItem} from '../../utils/interfaces/IFileSystemItem'
 import {preventEventDefault} from '../../utils/preventEventDefault'
 import styles from './FolderIcon.module.css'
+import {onFileIconDragStart} from '../../utils/onFileIconDragStart'
+import {onFileIconDragEnd} from '../../utils/onFileIconDragEnd'
 
 const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
@@ -19,15 +21,6 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 	const rightClickHandler = (e: Event) => {
 		e.preventDefault()
 		setFsItemOpenedInModal(new FileSystemItem(props))
-	}
-
-	const dragStartHandler = (e: DragEvent) => {
-		e.dataTransfer.setData('text', JSON.stringify(props))
-		;(e.target as HTMLDivElement).style.opacity = '0.6'
-	}
-
-	const dragEndHandler = (e: DragEvent) => {
-		(e.target as HTMLDivElement).style.opacity = 'initial'
 	}
 
 	const dropHandler = (e: DragEvent) => {
@@ -49,11 +42,11 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 			ondblclick={() => setCWD(props.path)}
 			oncontextmenu={rightClickHandler}
 			ondragenter={preventEventDefault}
-			ondragstart={dragStartHandler}
+			ondragstart={onFileIconDragStart(props)}
 			ondragover={preventEventDefault}
 			ondragleave={preventEventDefault}
 			ondrop={dropHandler}
-			ondragend={dragEndHandler}
+			ondragend={onFileIconDragEnd}
 		>
 			<img
 				draggable={false}
