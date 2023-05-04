@@ -13,6 +13,11 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 
 	const dragStartHandler = (e: DragEvent) => {
 		e.dataTransfer.setData('text', JSON.stringify(props))
+		;(e.target as HTMLDivElement).style.opacity = '0.6'
+	}
+
+	const dragEndHandler = (e: DragEvent) => {
+		(e.target as HTMLDivElement).style.opacity = 'initial'
 	}
 
 	const rightClickHandler = (e: MouseEvent) => {
@@ -28,6 +33,7 @@ const FileIcon = (props: IFileSystemItem): JSX.Element => {
 			oncontextmenu={rightClickHandler}
 			draggable={true}
 			ondragstart={dragStartHandler}
+			ondragend={dragEndHandler}
 		>
 			<img
 				draggable={false}

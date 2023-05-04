@@ -23,6 +23,11 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 
 	const dragStartHandler = (e: DragEvent) => {
 		e.dataTransfer.setData('text', JSON.stringify(props))
+		;(e.target as HTMLDivElement).style.opacity = '0.6'
+	}
+
+	const dragEndHandler = (e: DragEvent) => {
+		(e.target as HTMLDivElement).style.opacity = 'initial'
 	}
 
 	const dropHandler = (e: DragEvent) => {
@@ -48,6 +53,7 @@ const FolderIcon = (props: IFileSystemItem): JSX.Element => {
 			ondragover={preventEventDefault}
 			ondragleave={preventEventDefault}
 			ondrop={dropHandler}
+			ondragend={dragEndHandler}
 		>
 			<img
 				draggable={false}
