@@ -13,7 +13,7 @@ import styles from './HeaderMenu.module.css'
 const HeaderMenu = (): JSX.Element => {
 	const getSocketioClient = socketioClient[0]
 	const getConnectionURL = connectionURL[0]
-	const setShowFileIcons = showFileIcons[1]
+	const [getShowFileIcons, setShowFileIcons] = showFileIcons
 	const [getCWD, setCWD] = currentWorkingDirectory
 
 	const createDirectory = () => {
@@ -32,8 +32,8 @@ const HeaderMenu = (): JSX.Element => {
 		<menu class={styles.menu}>
 			<HeaderMenuButton onclick={() => setCWD('/')}><i class="icon-home"></i></HeaderMenuButton>
 			<HeaderMenuButton onclick={() => setCWD(prev => backDirectory(prev))}><i class="icon-back"></i></HeaderMenuButton>
-			<HeaderMenuButton onclick={() => setShowFileIcons(false)}><i class="icon-list"></i></HeaderMenuButton>
-			<HeaderMenuButton onclick={() => setShowFileIcons(true)}><i class="icon-table"></i></HeaderMenuButton>
+			<HeaderMenuButton disabled={!getShowFileIcons()} onclick={() => setShowFileIcons(false)}><i class="icon-list"></i></HeaderMenuButton>
+			<HeaderMenuButton disabled={getShowFileIcons()} onclick={() => setShowFileIcons(true)}><i class="icon-table"></i></HeaderMenuButton>
 			<HeaderMenuButton onclick={createDirectory}>Создать папку</HeaderMenuButton>
 			<FileUploadInput onchange={uploadFiles}>Загрузить файлы</FileUploadInput>
 		</menu>
