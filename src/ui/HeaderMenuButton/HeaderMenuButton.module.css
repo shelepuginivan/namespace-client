@@ -14,5 +14,5 @@
 }
 
 .button:disabled {
-	color: var(--darkgray);
+	background-color: var(--lightgray);
 }
